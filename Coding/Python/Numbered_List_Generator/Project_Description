@@ -1,1 +1,4 @@
-
+This is my first Python project, I wanted to do something different and the coolest part of coding for me is being able to make something to make my or others life easier.
+I do a lot of quizes in books and other places where I either can't or don't want to mark on them and I use to have to make a list to put my answers to these in a text file manually. 
+This generates a numbered list based on user input, it will then create a text file with that numbered list so you can then use it for whatever reason you need it formated with periods and a space so its ready.
+This helped me focus in on how to reearch for answers, troubleshoot, deal with variables, understand while loops, and deal with importing modules to add functionality to my program.
