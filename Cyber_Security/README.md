@@ -1,1 +1,1 @@
-All of my porfolio documents from various programs and activities for cyber security.
+All of my porfolio documents and activities from various programs for dealing with cyber security.
