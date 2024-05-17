@@ -1,0 +1,3 @@
+Iron out the formating
+Remove/add/edit comments for better reading
+Allow for either lower case or upper case responses (e.g. y and Y, n and N, Add, add, ADD)
