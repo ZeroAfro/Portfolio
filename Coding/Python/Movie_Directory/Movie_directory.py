@@ -4,10 +4,7 @@
 import sys
 
 #Movie Directory
-movie_list = [
-  (   
-  )
-]
+movie_list = []
 
 #Defining start_of_code to catch 'else' statments
 def start_of_code():
@@ -26,7 +23,7 @@ def start_of_code():
             start_of_code()
 
 while True:
-
+    
     #Requesting user input to check against if/elif statments
     user_input = input("Would you like to (View/Add/Remove/Exit): ")
 
@@ -40,12 +37,18 @@ while True:
             start_of_code()
 
         elif answer == "Index":
+            while True:
+                
+                try:
+                    movie_index_number = int(input("Please type the index number of the movie you would like to view: "))
 
-                movie_index_number = int(input("Please type the index number of the movie you would like to view: "))
-
-                print({movie_list[movie_index_number]})
-                start_of_code()
-
+                    print({movie_list[movie_index_number]})
+                    start_of_code()
+                    
+                except IndexError:
+                    print("Invalid index number has been entered.")
+                    break
+                    
     #User wishes to add a movie to the directory
     elif user_input == "Add":
 
@@ -65,7 +68,7 @@ while True:
 
     #elif statement if the user wished to remove a movie
     elif user_input == "Remove":
-        
+
         while True:
             try:
                 removed_movie_index = int(input("What is the index number of the movie you would like to remove?: "))
@@ -79,7 +82,7 @@ while True:
                 start_of_code()
             except IndexError:
                 print("Invalid index number has been entered, try again.")
-            
+
 
     elif user_input == "Exit":
         sys.exit()
