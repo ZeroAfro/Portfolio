@@ -5,8 +5,7 @@ import sys
 
 #Movie Directory
 movie_list = [
-  (
-      
+  (   
   )
 ]
 
@@ -29,7 +28,7 @@ def start_of_code():
 while True:
 
     #Requesting user input to check against if/elif statments
-    user_input = input("Would you like to (View/Add/Remove/Exit)?: ")
+    user_input = input("Would you like to (View/Add/Remove/Exit): ")
 
     #elif alowing them to view movies based on index number
     if user_input == "View":
@@ -42,7 +41,7 @@ while True:
 
         elif answer == "Index":
 
-                movie_index_number = int(input("Please type the index number of the movie you would like to view.: "))
+                movie_index_number = int(input("Please type the index number of the movie you would like to view: "))
 
                 print({movie_list[movie_index_number]})
                 start_of_code()
