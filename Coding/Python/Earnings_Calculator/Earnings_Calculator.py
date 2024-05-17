@@ -17,4 +17,4 @@ total_earnings = hours_worked * hourly_wage
 print(f"{employee_name} earned ${total_earnings:.2f} this week.")
 
 #input to request user input to close the code
-input("Please press eENTER to exit")
+input("Please press ENTER to exit")
