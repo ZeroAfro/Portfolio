@@ -50,10 +50,10 @@ while True:
     #User wishes to add a movie to the directory
     elif user_input == "Add":
 
-        movie_name = input("What is the name of the movie?: ")
-        director_name = input("What is the directors name?: ")
-        release_year = input("What is the release year?: ")
-        movie_budget = input("What was the budget?: ")
+        movie_name = input("Title: ")
+        director_name = input("Director: ")
+        release_year = input("Release Year?: ")
+        movie_budget = input("Budget: ")
 
         #Adding all user variables into a single variable, formating them and appending them into the directory
         new_entry = (movie_name.strip().title(), director_name.strip().title(), release_year.strip(), movie_budget.strip())
