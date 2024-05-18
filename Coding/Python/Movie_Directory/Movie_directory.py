@@ -11,10 +11,10 @@ def continuation_confirmation():
     while True:
         answer = input("Will that be all? (Y/N): ").strip().lower()
 
-        if answer in ["y", "yes"]:
+        if answer in ["Y", "Yes"]:
             sys.exit()
 
-        elif answer in ["n", "no"]:
+        elif answer in ["N", "No"]:
             break
 
         else:    
@@ -26,18 +26,18 @@ while True:
     user_input = input("Would you like to (View/Add/Remove/Exit): ").strip().lower()
 
     #User wishes to view their directory
-    if user_input in ["v", "view"]:
+    if user_input in ["View", "V"]:
 
         answer = input("Would you like to view the whole directory or a specific movie by index number? (Whole/Index): ").strip().lower()
 
         #Displays the whole movie_list
-        if answer in ["w", "whole"]:
+        if answer in ["Whole", "W"]:
 
             for movies in movie_list:
                 print(f"<{movies}>")
             continuation_confirmation()
 
-        elif answer in ["i", "index"]:
+        elif answer in ["Index", "I"]:
             while True:
 
                 #Displays the selected movie by it's index
@@ -53,7 +53,7 @@ while True:
                     break
 
     #User wishes to add a movie to the directory
-    elif user_input in ["a", "add"]:
+    elif user_input in ["Add", "A"]:
 
         movie_name = input("Title: ")
         director_name = input("Director: ")
@@ -70,7 +70,7 @@ while True:
 
 
     #elif statement if the user wishes to remove a movie
-    elif user_input in ["r", "remove"]:
+    elif user_input in ["Remove", "R"]:
 
         while True:
             try:
@@ -89,7 +89,7 @@ while True:
                 break
 
 
-    elif user_input in ["e", "exit"]:
+    elif user_input in ["Exit", "E"]:
         sys.exit()
 
     #else statement to catch any invalid key entries
