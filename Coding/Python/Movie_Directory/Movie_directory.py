@@ -6,8 +6,8 @@ import sys
 #Movie Directory
 movie_list = []
 
-#Defining start_of_code function
-def start_of_code():
+#Defining invalid entry function
+def invalid_entry():
     while True:
         answer = input("Will that be all? (Y/N): ").strip().upper()
 
@@ -19,7 +19,7 @@ def start_of_code():
 
         else:    
             print("Please enter a valid option.")
-            start_of_code()
+            invalid_entry()
 
 while True:
 
@@ -35,7 +35,7 @@ while True:
 
             for movies in movie_list:
                 print(f"<{movies}>")
-            start_of_code()
+            invalid_entry()
 
         elif answer in ["Index", "I"]:
             while True:
@@ -45,7 +45,7 @@ while True:
                     movie_index_number = int(input("Please enter the index number of the movie you would like to view: "))
 
                     print({movie_list[movie_index_number]})
-                    start_of_code()
+                    invalid_entry()
 
                 #Catches invalid entries    
                 except IndexError:
@@ -65,7 +65,7 @@ while True:
         movie_list.append(new_entry)
 
         print(f"<{new_entry[0]}> has been added to the directory!")
-        start_of_code()
+        invalid_entry()
 
 
 
@@ -82,7 +82,7 @@ while True:
                 removed_movie_index = int(removed_movie_index)
 
                 del movie_list[removed_movie_index]
-                start_of_code()
+                invalid_entry()
 
             except IndexError:
                 print("Invalid index number has been entered.")
