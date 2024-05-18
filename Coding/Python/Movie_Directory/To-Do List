@@ -1,3 +1,4 @@
 Iron out the formating
 Remove/add/edit comments for better reading
-Importing the information to a excel sheet list that will populate the currect cells with information
+enable mysql
+create functions to call for mysql
