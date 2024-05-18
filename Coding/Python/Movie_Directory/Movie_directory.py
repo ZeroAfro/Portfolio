@@ -4,7 +4,9 @@
 import sys
 
 #Place holder for directory
-movie_list = []
+movie_list = [
+    
+]
 
 #Function asking if they would like to continue
 def continuation_confirmation():
