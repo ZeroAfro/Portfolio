@@ -3,13 +3,13 @@
 #Imported Modules
 import sys
 
-#Movie Directory
+#Place holder for directory
 movie_list = []
 
-#Defining invalid entry function
-def invalid_entry():
+#Function asking if they would like to continue
+def continuation_confirmation():
     while True:
-        answer = input("Will that be all? (Y/N): ").strip().title()
+        answer = input("Will that be all? (Y/N): ").strip().lower()
 
         if answer in ["Y", "Yes"]:
             sys.exit()
@@ -19,23 +19,23 @@ def invalid_entry():
 
         else:    
             print("Please enter a valid option.")
-            invalid_entry()
+            continuation_confirmation()
 
 while True:
 
-    user_input = input("Would you like to (View/Add/Remove/Exit): ").strip().title()
+    user_input = input("Would you like to (View/Add/Remove/Exit): ").strip().lower()
 
     #User wishes to view their directory
     if user_input in ["View", "V"]:
 
-        answer = input("Would you like to view the whole directory or a specific movie by index number? (Whole/Index): ").strip().title()
+        answer = input("Would you like to view the whole directory or a specific movie by index number? (Whole/Index): ").strip().lower()
 
         #Displays the whole movie_list
         if answer in ["Whole", "W"]:
 
             for movies in movie_list:
                 print(f"<{movies}>")
-            invalid_entry()
+            continuation_confirmation()
 
         elif answer in ["Index", "I"]:
             while True:
@@ -45,7 +45,7 @@ while True:
                     movie_index_number = int(input("Please enter the index number of the movie you would like to view: "))
 
                     print({movie_list[movie_index_number]})
-                    invalid_entry()
+                    continuation_confirmation()
 
                 #Catches invalid entries    
                 except IndexError:
@@ -65,7 +65,7 @@ while True:
         movie_list.append(new_entry)
 
         print(f"<{new_entry[0]}> has been added to the directory!")
-        invalid_entry()
+        continuation_confirmation()
 
 
 
@@ -82,7 +82,7 @@ while True:
                 removed_movie_index = int(removed_movie_index)
 
                 del movie_list[removed_movie_index]
-                invalid_entry()
+                continuation_confirmation()
 
             except IndexError:
                 print("Invalid index number has been entered.")
