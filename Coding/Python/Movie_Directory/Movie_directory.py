@@ -6,16 +6,15 @@ import sys
 #Movie Directory
 movie_list = []
 
-#Defining start_of_code to catch 'else' statments
+#Defining start_of_code function
 def start_of_code():
     while True:
-        answer = input("Will that be all? (Y/N): ")
+        answer = input("Will that be all? (Y/N): ").strip().upper()
 
-        #if statement checking if the user is done or not
-        if answer == "Y":
+        if answer in ["Y", "YES"]:
             sys.exit()
 
-        elif answer == "N":
+        elif answer in ["N", "NO"]:
             break
 
         else:    
@@ -23,34 +22,38 @@ def start_of_code():
             start_of_code()
 
 while True:
-    
-    #Requesting user input to check against if/elif statments
-    user_input = input("Would you like to (View/Add/Remove/Exit): ")
 
-    #elif alowing them to view movies based on index number
-    if user_input == "View":
+    user_input = input("Would you like to (View/Add/Remove/Exit): ").strip().title()
 
-        answer = input("Would you like to view the whole directory or a specific movie by index number? (Whole/Index): ")
+    #User wishes to view their directory
+    if user_input in ["View", "V"]:
 
-        if answer == "Whole":
-            print(movie_list)
+        answer = input("Would you like to view the whole directory or a specific movie by index number? (Whole/Index): ").strip().title()
+
+        #Displays the whole movie_list
+        if answer in ["Whole", "W"]:
+
+            for movies in movie_list:
+                print(f"<{movies}>")
             start_of_code()
 
-        elif answer == "Index":
+        elif answer in ["Index", "I"]:
             while True:
-                
+
+                #Displays the selected movie by it's index
                 try:
-                    movie_index_number = int(input("Please type the index number of the movie you would like to view: "))
+                    movie_index_number = int(input("Please enter the index number of the movie you would like to view: "))
 
                     print({movie_list[movie_index_number]})
                     start_of_code()
-                    
+
+                #Catches invalid entries    
                 except IndexError:
                     print("Invalid index number has been entered.")
                     break
-                    
+
     #User wishes to add a movie to the directory
-    elif user_input == "Add":
+    elif user_input in ["Add", "A"]:
 
         movie_name = input("Title: ")
         director_name = input("Director: ")
@@ -66,8 +69,8 @@ while True:
 
 
 
-    #elif statement if the user wished to remove a movie
-    elif user_input == "Remove":
+    #elif statement if the user wishes to remove a movie
+    elif user_input in ["Remove", "R"]:
 
         while True:
             try:
@@ -80,11 +83,13 @@ while True:
 
                 del movie_list[removed_movie_index]
                 start_of_code()
+
             except IndexError:
-                print("Invalid index number has been entered, try again.")
+                print("Invalid index number has been entered.")
+                break
 
 
-    elif user_input == "Exit":
+    elif user_input in ["Exit", "E"]:
         sys.exit()
 
     #else statement to catch any invalid key entries
