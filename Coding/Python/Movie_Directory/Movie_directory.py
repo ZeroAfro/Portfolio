@@ -9,12 +9,12 @@ movie_list = []
 #Defining invalid entry function
 def invalid_entry():
     while True:
-        answer = input("Will that be all? (Y/N): ").strip().upper()
+        answer = input("Will that be all? (Y/N): ").strip().title()
 
-        if answer in ["Y", "YES"]:
+        if answer in ["Y", "Yes"]:
             sys.exit()
 
-        elif answer in ["N", "NO"]:
+        elif answer in ["N", "No"]:
             break
 
         else:    
