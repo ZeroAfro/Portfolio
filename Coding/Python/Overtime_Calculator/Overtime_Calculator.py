@@ -25,14 +25,16 @@ def beginning_prompt():
 while True:
 
   hours_worked = float(input("How many hours have you worked this week?: "))
-  
+
   #Checking if the user has worked more than 40 hours or less than
   if hours_worked > 40:
 
     hourly_wage = float(input("What is your hourly wage?: "))
 
-    hours_worked = float((hours_worked - 40) * 1.5)
-    print(f"You have are owned ${hours_worked:.2f} overtime pay.")
+    overtime_hours = float(hours_worked - 40)
+    overtime_pay = float(overtime_hours *1.5 * hourly_wage)
+    
+    print(f"You have are owned ${overtime_pay:.2f} overtime pay.")
 
     beginning_prompt()
 
