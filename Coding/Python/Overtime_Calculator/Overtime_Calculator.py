@@ -41,7 +41,7 @@ while True:
         hourly_wage = float(input("What is your hourly wage?: "))
 
         overtime_hours = float(hours_worked - 40)
-        overtime_pay = float(overtime_hours *1.5 * hourly_wage)
+        overtime_pay = float(overtime_hours * 1.5 * hourly_wage)
 
         print(f"You have are owned ${overtime_pay:.2f} overtime pay.")
         exit_prompt()
