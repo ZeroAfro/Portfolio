@@ -47,16 +47,19 @@ while True:
 
                 #using Random library to pull a random title out of the txt list
                 lines = file.readlines()
-                choice = random.choice(lines).strip()
+                file_size = os.path.getsize(file_path)
 
+                if (file_size == 0):
+                    print("The list is empty")
+                    continuation_prompt()
+                else:
+                    choice = random.choice(lines).strip()
                 print(choice)
 
-            continuation_prompt
+            continuation_prompt()
 
-        elif answer == "delete now":
-                    
+        elif answer == "delete now":      
             open("Reading List.txt", "w").close()
-
             print("List has been deleted!")
             continuation_prompt()   
 
