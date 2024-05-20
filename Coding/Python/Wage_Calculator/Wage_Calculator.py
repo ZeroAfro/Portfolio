@@ -12,7 +12,7 @@ def space():
 print("Welcome to the wage calcuator!")
 space()
 
-# TODO: Add exit option to main menu
+# TODO: Add exit option to main menu with a exit() function
 while True:
     
     answer = input("Would you like to calculate (R)egular or (O)vertime wages?: ").strip().lower()
