@@ -8,7 +8,7 @@ import random
 
 # Setting up the absolute path for the file
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
-file_path = os.path.join(os.getcwd(), "Reading List.txt")
+file_path = os.path.join(os.getcwd(), 'Reading List.txt')
 
 # Spacing function
 def space():
@@ -47,29 +47,44 @@ while True:
 
         # TODO: Add the ability to enter a "mass title" mode which will let you enter title after title without any prompts or fewer prompts
         if answer in ["a", "add"]:
+            
+            answer = input("(S)ingle/(M)ass:").strip().lower()
+            
+            if answer in ["s", "single"]:
         
-            with open("Reading List.txt",'a') as file:
+                with open('Reading List.txt','a') as file:
 
-                while True:
+                    while True:
 
-                    answer = input("Please add the title of the story you wish to add to the list:\n").strip().title()
+                        answer = input("Please add the title of the story you wish to add to the list:\n").strip().title()
 
-                    space()
-                    file.write(f"[{answer}]" + '\n')
-                    print("<Title is now saved>")
-                    space()
+                        space()
+                        file.write(f"[{answer}]" + '\n')
+                        print(f"[{answer}] has been added!")
+                        space()
 
-                    answer = input("Would you like to enter more titles (Y/N): ").strip().lower()
-                    space()
+                        answer = input("Would you like to enter more titles (Y/N): ").strip().lower()
+                        space()
 
-                    if answer in ["y", "yes"]:
-                        print(" ")
-                        continue
-                    elif answer in ["n", "no"]:
-                       space()
-                       break
-                    else:
-                        print("Please enter a valid option.")
+                        if answer in ["y", "yes"]:
+                            print(" ")
+                            continue
+                    
+                        elif answer in ["n", "no"]:
+                            space()
+                            break
+                    
+                        else:
+                            print("Please enter a valid option.")
+                            space()
+            elif answer in ["m", "mass"]:
+                
+                with open('Reading List.txt', 'a'):
+                    
+                    while True:
+                        answer = input("Title: \n").strip().title()
+                        space()
+                        file.write(f"[{answer}]" + '\n')
                         space()
         
         elif answer in ["r", "random"]:
@@ -85,7 +100,7 @@ while True:
                 if (file_size == 0):
                     space()
                     print("The list is empty")
-                    space()
+                    pace()
                     exit_prompt()
                     space()
                 elif (file_size > 0):
