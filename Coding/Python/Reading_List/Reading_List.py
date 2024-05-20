@@ -19,6 +19,7 @@ def exit_prompt():
     
     while True:
         answer = input("Would you like to go back to the main menu? (Y/N): ").strip().lower()
+        space()
             
         if answer in ["y", "yes"]:
             break
@@ -27,9 +28,25 @@ def exit_prompt():
             exit()
                 
         else:
+            space()
             print("Please enter a valid option.")
+            space()
             exit_prompt()
-
+            
+# Function to allow for quicker title input            
+def mass_title():
+    while True:
+        answer = input("More? (Y/N): ").strip().lower()
+        space()
+        
+        if answer in ["y", "yes"]:
+            break
+        elif answer in ["n", "no"]:
+            exit()
+        else:
+            space()
+            print("Please enter a valid option.")
+            space()
 
 while True:
         
@@ -44,48 +61,45 @@ while True:
         answer = input("Please enter one of the above options: ").strip().lower()
         space()
 
-
-        # TODO: Add the ability to enter a "mass title" mode which will let you enter title after title without any prompts or fewer prompts
         if answer in ["a", "add"]:
             
-            answer = input("(S)ingle/(M)ass:").strip().lower()
+            while True:
+                     
+                answer = input("(S)ingle/(M)ass: ").strip().lower()
+                space()
             
-            if answer in ["s", "single"]:
+                if answer in ["s", "single"]:
         
-                with open('Reading List.txt','a') as file:
+                    with open('Reading List.txt', 'a') as file:
 
-                    while True:
+                        while True:
 
-                        answer = input("Please add the title of the story you wish to add to the list:\n").strip().title()
+                            title = input("What's the title?:\n").strip().title()
 
-                        space()
-                        file.write(f"[{answer}]" + '\n')
-                        print(f"[{answer}] has been added!")
-                        space()
-
-                        answer = input("Would you like to enter more titles (Y/N): ").strip().lower()
-                        space()
-
-                        if answer in ["y", "yes"]:
-                            print(" ")
-                            continue
-                    
-                        elif answer in ["n", "no"]:
+                            space()
+                            file.write(f"[{title}]" + '\n')
+                            print(f"[{title}] has been added!")
                             space()
                             break
-                    
-                        else:
-                            print("Please enter a valid option.")
-                            space()
-            elif answer in ["m", "mass"]:
+                    break
                 
-                with open('Reading List.txt', 'a'):
+                elif answer in ["m", "mass"]:
                     
-                    while True:
-                        answer = input("Title: \n").strip().title()
-                        space()
-                        file.write(f"[{answer}]" + '\n')
-                        space()
+                    with open('Reading List.txt', 'a') as file:
+                              
+                        while True:
+                            
+                            title = input("[Title]:\n").strip().title()
+                            
+                            space()    
+                            file.write(f"[{title}]" + '\n')
+                            mass_title()
+                
+                else:
+                    space()
+                    print("Please enter a valid option.")
+                    space()
+                        
         
         elif answer in ["r", "random"]:
 
@@ -100,7 +114,7 @@ while True:
                 if (file_size == 0):
                     space()
                     print("The list is empty")
-                    pace()
+                    space()
                     exit_prompt()
                     space()
                 elif (file_size > 0):
