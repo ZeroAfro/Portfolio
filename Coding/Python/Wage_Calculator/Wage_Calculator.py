@@ -14,7 +14,7 @@ space()
 # TODO: Add exit option to main menu with a exit() function
 while True:
 
-    answer = input("Would you like to calculate (R)egular or (O)vertime wages?: ").strip().lower()
+    answer = input("Would you like to calculate (R)egular/(O)vertime/(E)xit: ").strip().lower()
     space()
 
     while True: 
@@ -87,6 +87,10 @@ while True:
                 space()
                 print("Please enter a valid number.")
                 space()
+                
+        elif answer in ["e", "exit"]:
+            exit()
+            
         else:
             print("Please enter a valid option")
             space()
