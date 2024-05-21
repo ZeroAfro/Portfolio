@@ -62,7 +62,7 @@ def launch_file():
 def esc_bind():
     root.destroy()
 
-#Variables to change multiple button settings at once
+# Variables to change multiple button settings at once
 button_bg = "#F4F3ED"
 button_fg = "black"
 label_fg = "black"
