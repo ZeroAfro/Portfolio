@@ -16,25 +16,43 @@ file_path = os.path.join(os.getcwd(), 'Reading List.txt')
 # Functions
 def get_title():
     title = title_entry_box.get().strip().title()
+    #lines = file.readlines()
+    
     if title == "":
         messagebox.showerror("ERROR", "No title was entered!", parent=root)
-    elif title != "":
-        with open('Reading List.txt', 'a') as file:
-            file.write(f"[{title}]" + '\n')
+        return
+    
+    try:
+        with open(file_path, 'r') as file:
+            lines = file.readlines()
+        if any(title in line for line in lines):
+            title_entry_box.delete(0, tk.END)
+            messagebox.showerror("ERROR", "List already contains this title!", parent=root)
+        else:
+            with open(file_path, 'a') as file:
+                file.write(f"[{title}]\n")
+                title_entry_box.delete(0, tk.END)
+    except FileNotFoundError:
+        with open(file_path, 'a') as file:
+            file.write(f"[{title}]\n")
             title_entry_box.delete(0, tk.END)
             
-def random_title():
-    with open('Reading List.txt', 'r') as file:
-        lines = file.readlines()
+def random_title():  
+    try:
+        
         file_size = os.path.getsize(file_path)
 
         if(file_size == 0):
             messagebox.showerror("ERROR", "List is empty", parent=root)
-        elif(file_size > 0):
-            choice = random.choice(lines).strip()
-            width = len(choice) * 10
-            font = font=("tahoma", 10, "bold")
-            random_title_box.config(text=choice, width=width, font=font)
+        else:
+            with open('Reading List.txt', 'r') as file:
+                lines = file.readlines()
+                choice = random.choice(lines).strip()
+                width = len(choice) * 10
+                font = font=("tahoma", 10, "bold")
+                random_title_box.config(text=choice, width=width, font=font)
+    except FileNotFoundError:
+        messagebox.showerror("ERROR", "List file does not exist", parent=root)
             
             
 def esc_bind():
