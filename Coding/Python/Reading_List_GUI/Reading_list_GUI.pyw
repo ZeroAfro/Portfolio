@@ -17,7 +17,6 @@ file_path = os.path.join(os.getcwd(), 'Reading List.txt')
 # Functions
 def get_title():
     title = title_entry_box.get().strip().title()
-    #lines = file.readlines()
     
     if title == "":
         messagebox.showerror("ERROR", "No title was entered!", parent=root)
