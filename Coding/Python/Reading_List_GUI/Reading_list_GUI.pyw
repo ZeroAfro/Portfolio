@@ -1,6 +1,7 @@
 # GUI for reading list
 
 # TODO: Finalize positions of widgets
+# TODO: Look into adding auto correct or auto punctuation
 
 # Library Imports
 import tkinter as tk
@@ -53,8 +54,12 @@ def random_title():
                 random_title_box.config(text=choice, width=width, font=font)
     except FileNotFoundError:
         messagebox.showerror("ERROR", "List file does not exist", parent=root)
-            
-            
+    
+# launches file sit to variable
+def launch_file():
+    os.startfile(file_path)
+    
+# binds escape to closing tkinter window
 def esc_bind():
     root.destroy()
 
@@ -62,7 +67,7 @@ def esc_bind():
 button_bg = "#F4F3ED"
 button_fg = "black"
 label_fg = "black"
-label_bg = "#ECE9D8"
+label_bg = "light blue"
 box_bg = "#ECE9D8"
 box_fg = "black"
 
@@ -73,6 +78,7 @@ title_entry_box = tk.Entry()
 random_title_button = tk.Button()
 random_title_box = tk.Message(root)
 random_title_label = tk.Label()
+text_file_button = tk.Button()
 
 # Center frame
 screen_width = root.winfo_screenwidth()
@@ -86,7 +92,7 @@ root.title("Reading List")
 root.geometry("900x600")
 root.resizable(width=False, height=False)
 root.config(
-    bg="#ECE9D8",
+    bg="light blue",
     highlightcolor="#0372FE",
     highlightthickness=1.5
 )
@@ -98,6 +104,7 @@ title_entry_label.config(
     bg=label_bg,
     font=("segoe", 25, "bold")
 )
+
 # Label for random title box
 random_title_label.config(
     text="Random Title",
@@ -114,6 +121,16 @@ random_title_button.config(
     bg=button_bg,
     fg=button_fg,
     command=random_title
+)
+
+# Text file button
+text_file_button.config(
+    text="OPEN",
+    width=10,
+    height=2,
+    bg=button_bg,
+    fg=button_fg,
+    command=launch_file
 )
 
 # Title input window
@@ -136,13 +153,11 @@ random_title_box.place(relx=0.5, rely=0.70, anchor="center", width=600, height=2
 
 # buttons
 random_title_button.place(relx=0.5, rely=0.80, anchor="center")
+text_file_button.place(relx=0.89, rely=0.03)
 
 # labels
 title_entry_label.place(relx=0.5, rely=0.35, anchor="center", width=500, height=25)
 random_title_label.place(relx=0.5, rely=0.63, anchor="center", width=500, height=25)
-
-# messages
-#tk.Message(root, text = "adasdasdadasda")
 
 # Keybinds
 title_entry_box.bind("<Return>", lambda event: get_title())
