@@ -5,16 +5,15 @@
 
 # Library Imports
 import tkinter as tk
-from tkinter import messagebox
-from sys import exit
 import os
 import random
+from tkinter import messagebox
 
 # Setting up the absolute path for the file
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
 file_path = os.path.join(os.getcwd(), 'Reading List.txt')
 
-# Functions
+# grabs text from entry box and writes it into file
 def get_title():
     title = title_entry_box.get().strip().title()
     
@@ -29,14 +28,12 @@ def get_title():
             title_entry_box.delete(0, tk.END)
             messagebox.showerror("ERROR", "List already contains this title!", parent=root)
         else:
-            with open(file_path, 'a') as file:
-                file.write(f"[{title}]\n")
-                title_entry_box.delete(0, tk.END)
-    except FileNotFoundError:
-        with open(file_path, 'a') as file:
-            file.write(f"[{title}]\n")
-            title_entry_box.delete(0, tk.END)
+            file_write(title)
             
+    except FileNotFoundError:
+        file_write(title)
+            
+ # grabs a random title from the file and returns it
 def random_title():  
     try:
         
@@ -53,6 +50,12 @@ def random_title():
                 random_title_box.config(text=choice, width=width, font=font)
     except FileNotFoundError:
         messagebox.showerror("ERROR", "List file does not exist", parent=root)
+        
+# adding title into file
+def file_write(title):
+    with open(file_path, 'a') as file:
+                file.write(f"[{title}]\n")
+                title_entry_box.delete(0, tk.END)
     
 # launches file sit to variable
 def launch_file():
@@ -61,8 +64,9 @@ def launch_file():
 # binds escape to closing tkinter window
 def esc_bind():
     root.destroy()
-
-# Variables to change multiple button settings at once
+    
+# Variables
+#spell = Speller(fast=True)
 button_bg = "#F4F3ED"
 button_fg = "black"
 label_fg = "black"
