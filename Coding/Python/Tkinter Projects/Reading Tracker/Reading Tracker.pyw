@@ -1,6 +1,7 @@
 # GUI for reading list
 
 # TODO: Finalize positions of widgets
+# TODO: Turn .replace into a function to call seperatly
 
 # Library Imports
 import tkinter as tk
@@ -16,6 +17,11 @@ file_path = os.path.join(os.getcwd(), 'Reading List.txt')
 def get_title():
     
     title = title_entry_box.get().strip().title()
+    title = title.replace("â€™S", "'s")
+    title = title.replace("â€™R", "'r")
+    title = title.replace("'S", "'s")
+    title = title.replace("I'M", "I'm")
+    title = title.replace("'T", "'t")
     
     if title == "":
         messagebox.showerror("ERROR", "No title was entered!", parent=root)
@@ -28,13 +34,9 @@ def get_title():
             title_entry_box.delete(0, tk.END)
             messagebox.showerror("ERROR", "List already contains this title!", parent=root)
         else:
-            title = title.replace("â€™S", "'s")
-            title = title.replace("'S", "'s")
             file_write(title)
             
     except FileNotFoundError:
-            title = title.replace("â€™S", "'")
-            title = title.replace("'S", "'s")
             file_write(title)
             
  # grabs a random title from the file and returns it
