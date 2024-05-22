@@ -1,7 +1,6 @@
 # GUI for reading list
 
 # TODO: Finalize positions of widgets
-# TODO: Look into adding auto correct or auto punctuation
 
 # Library Imports
 import tkinter as tk
@@ -15,6 +14,7 @@ file_path = os.path.join(os.getcwd(), 'Reading List.txt')
 
 # grabs text from entry box and writes it into file
 def get_title():
+    
     title = title_entry_box.get().strip().title()
     
     if title == "":
@@ -28,10 +28,14 @@ def get_title():
             title_entry_box.delete(0, tk.END)
             messagebox.showerror("ERROR", "List already contains this title!", parent=root)
         else:
+            title = title.replace("â€™S", "'s")
+            title = title.replace("'S", "'s")
             file_write(title)
             
     except FileNotFoundError:
-        file_write(title)
+            title = title.replace("â€™S", "'")
+            title = title.replace("'S", "'s")
+            file_write(title)
             
  # grabs a random title from the file and returns it
 def random_title():  
@@ -91,7 +95,7 @@ center_y = screen_height // 2
 center_frame = tk.Frame(root)
 
 # Root window
-root.title("Reading List")
+root.title("Reading Tracker")
 root.geometry("900x600")
 root.resizable(width=False, height=False)
 root.config(
@@ -102,7 +106,7 @@ root.config(
 
 # Label for title entry box
 title_entry_label.config(
-    text="Reading List",
+    text="Title",
     fg=label_fg,
     bg=label_bg,
     font=("segoe", 25, "bold")
