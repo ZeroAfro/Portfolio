@@ -52,7 +52,7 @@ while True:
                 hours_worked = float(input("How many hours did you work?: "))
                 space()
 
-                if hours_worked > 40 or hours_worked > 40.0:
+                if hours_worked > 40:
 
                     while True:
 
@@ -74,7 +74,7 @@ while True:
                     space()
                     break
 
-                elif hours_worked <= 40 or hours_worked <= 40.0:
+                elif hours_worked <= 40:
                     print("Overtime not earned.")
                     space()
                     break
