@@ -1,7 +1,7 @@
 # **Modern Tkinter Reading Tracker**
 
 This is the same as my 'regular' reading tracker however this uses ttk themed widgets to give at a more modern look. It provides a gui with an input field that will take
-titles and once you hit 'ENTER' save it in a list, the ability to exit the application via hitting ESC, a button to open the text file itself, and a button to pull a random title out of the list and display it in the GUI.
+titles and once you hit 'ENTER' save it in a list, the ability to exit the application via hitting 'ESC', a button to open the text file itself, and a button to pull a random title out of the list and display it in the GUI.
 
 It will also search the title before saving it in the list for common formating and grammar issues from copy/pasting titles from manwah/manga sites and replace those with the proper capitalization
 and punctuation.
