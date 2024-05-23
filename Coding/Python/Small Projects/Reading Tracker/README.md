@@ -1,5 +1,6 @@
-Based on my number list generator. It will create a txt file in the directory the code is ran that will store title of anything you want so that you can keep a list of the books you are wanting to read (or anything else really).
-It will place each new entry on a new line and fromat it with square brackets for better visability.
+# **Reading Tracker**
 
-To-Do:
-Add the ability to delete entries by their title
+Created to help solve my issue of having hundreds of tabs open of things I wish to read, it will allow you to enter a title (or anything you want really) and it will then store it in a text file,
+it will format the title with brackets to help give better readability.
+
+Users have the option to either enter a single title or enter a 'mass' mode that will allow for faster entry of multiple titles, users can also delete the whole list, or even view a random title that it returns.
