@@ -42,6 +42,8 @@ count_label.config(
 )
 
 count_display.config(
+    text="0",
+    font=('Helvetica, 25'),
     bg='grey',
     fg='yellow',
     relief=tk.SUNKEN
