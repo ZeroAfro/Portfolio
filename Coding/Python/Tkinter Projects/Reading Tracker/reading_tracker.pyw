@@ -1,17 +1,10 @@
-# GUI for reading list
-
-# TODO: Finalize positions of widgets
-# TODO: Turn .replace into a function to call seperatly
+# Reading Tracker GUI
 
 # Library Imports
 import tkinter as tk
 import os
 import random
 from tkinter import messagebox
-
-# Setting up the absolute path for the file
-os.chdir(os.path.dirname(os.path.abspath(__file__)))
-file_path = os.path.join(os.getcwd(), 'Reading List.txt')
 
 # grabs text from entry box and writes it into file
 def get_title():
@@ -22,13 +15,14 @@ def get_title():
     title = title.replace("'S", "'s")
     title = title.replace("I'M", "I'm")
     title = title.replace("'T", "'t")
+    title = title.replace("'Re", "'re")
     
     if title == "":
         messagebox.showerror("ERROR", "No title was entered!", parent=root)
         return
     
     try:
-        with open(file_path, 'r') as file:
+        with open('Reading List.txt', 'r+') as file:
             lines = file.readlines()
         if any(title in line for line in lines):
             title_entry_box.delete(0, tk.END)
@@ -43,7 +37,7 @@ def get_title():
 def random_title():  
     try:
         
-        file_size = os.path.getsize(file_path)
+        file_size = os.path.getsize('Reading List.txt')
 
         if(file_size == 0):
             messagebox.showerror("ERROR", "List is empty", parent=root)
@@ -59,20 +53,19 @@ def random_title():
         
 # adding title into file
 def file_write(title):
-    with open(file_path, 'a') as file:
+    with open('Reading List.txt', 'a') as file:
                 file.write(f"[{title}]\n")
                 title_entry_box.delete(0, tk.END)
     
 # launches file sit to variable
 def launch_file():
-    os.startfile(file_path)
+    os.startfile('Reading List.txt')
     
 # binds escape to closing tkinter window
 def esc_bind():
     root.destroy()
     
 # Variables
-#spell = Speller(fast=True)
 button_bg = "#F4F3ED"
 button_fg = "black"
 label_fg = "black"
