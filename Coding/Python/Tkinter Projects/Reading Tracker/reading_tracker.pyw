@@ -1,12 +1,11 @@
-# Reading Tracker GUI
+# Reading Tracker W/GUI
 
-# Library Imports
 import tkinter as tk
 import os
 import random
 from tkinter import messagebox
 
-# grabs text from entry box and writes it into file
+# Function that grabs and filters titles entered
 def get_title():
     
     title = title_entry_box.get().strip().title()
@@ -33,7 +32,7 @@ def get_title():
     except FileNotFoundError:
             file_write(title)
             
- # grabs a random title from the file and returns it
+ # Function that returns a random title
 def random_title():  
     try:
         
@@ -51,7 +50,7 @@ def random_title():
     except FileNotFoundError:
         messagebox.showerror("ERROR", "List file does not exist", parent=root)
         
-# adding title into file
+# Writes title into txt and erases entry box
 def file_write(title):
     with open('Reading List.txt', 'a') as file:
                 file.write(f"[{title}]\n")
@@ -61,11 +60,11 @@ def file_write(title):
 def launch_file():
     os.startfile('Reading List.txt')
     
-# binds escape to closing tkinter window
+# Allows ESC to close GUI
 def esc_bind():
     root.destroy()
     
-# Variables
+# Customization variables
 button_bg = "#F4F3ED"
 button_fg = "black"
 label_fg = "black"
@@ -89,7 +88,7 @@ center_x = screen_height // 2
 center_y = screen_height // 2
 center_frame = tk.Frame(root)
 
-# Root window
+# Root window config
 root.title("Reading Tracker")
 root.geometry("900x600")
 root.resizable(width=False, height=False)
@@ -99,7 +98,6 @@ root.config(
     highlightthickness=1.5
 )
 
-# Label for title entry box
 title_entry_label.config(
     text="Title",
     fg=label_fg,
@@ -107,7 +105,6 @@ title_entry_label.config(
     font=("segoe", 25, "bold")
 )
 
-# Label for random title box
 random_title_label.config(
     text="Random Title",
     fg=label_fg,
@@ -115,7 +112,6 @@ random_title_label.config(
     font=("segoe", 25, "bold")
 )
 
-# Random button
 random_title_button.config(
     text="RANDOM",
     width=10,
@@ -125,7 +121,6 @@ random_title_button.config(
     command=random_title
 )
 
-# Text file button
 text_file_button.config(
     text="OPEN",
     width=10,
@@ -135,29 +130,24 @@ text_file_button.config(
     command=launch_file
 )
 
-# Title input window
 title_entry_box.config(
     fg=box_fg,
     bg=box_bg,
     font=("segoe", 10, "bold")
 )
 
-# Random output window
 random_title_box.config(
     fg=box_fg,
     bg=box_bg,
     relief=tk.SUNKEN
 )
 
-# boxes
 title_entry_box.place(relx=0.5, rely=0.42, anchor="center", width=600, height=25)
 random_title_box.place(relx=0.5, rely=0.70, anchor="center", width=600, height=25)
 
-# buttons
 random_title_button.place(relx=0.5, rely=0.80, anchor="center")
 text_file_button.place(relx=0.89, rely=0.03)
 
-# labels
 title_entry_label.place(relx=0.5, rely=0.35, anchor="center", width=500, height=25)
 random_title_label.place(relx=0.5, rely=0.63, anchor="center", width=500, height=25)
 
