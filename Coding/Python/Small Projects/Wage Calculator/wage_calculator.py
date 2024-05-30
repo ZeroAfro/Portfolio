@@ -1,13 +1,14 @@
 # Wage Calculator
 
 # TODO: Add exit confirmations and statements
-# Library Imports
+
 from sys import exit
 
-#Function to add space
+# Function to add spacing
 def space():
     print(" ")
-
+    
+# Start of code
 print("Welcome to the wage calcuator!")
 space()
 
