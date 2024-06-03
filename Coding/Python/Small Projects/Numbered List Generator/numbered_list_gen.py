@@ -1,5 +1,5 @@
 # Numbered List Generator
-# TODO: Change os file path to just current directory and include code to make it create text file if none exist
+# TODO: Figure out why I have to use os.chdir to insure file creation
 
 # Library Imports
 import os
