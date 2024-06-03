@@ -1,5 +1,5 @@
 # Numbered List Generator
-# Generates a formated number list
+# TODO: Change os file path to just current directory and include code to make it create text file if none exist
 
 # Library Imports
 import os
