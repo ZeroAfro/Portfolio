@@ -5,9 +5,9 @@ import os
 import random
 from tkinter import messagebox
 
+
 # Function that grabs and filters titles entered
 def get_title():
-    
     title = title_entry_box.get().strip().title()
     title = title.replace("â€™S", "'s")
     title = title.replace("â€™R", "'r")
@@ -15,55 +15,62 @@ def get_title():
     title = title.replace("I'M", "I'm")
     title = title.replace("'T", "'t")
     title = title.replace("'Re", "'re")
-    
+
     if title == "":
         messagebox.showerror("ERROR", "No title was entered!", parent=root)
         return
-    
+
     try:
         with open('Reading List.txt', 'r+') as file:
             lines = file.readlines()
         if any(title in line for line in lines):
             title_entry_box.delete(0, tk.END)
-            messagebox.showerror("ERROR", "List already contains this title!", parent=root)
+            messagebox.showerror(
+                "ERROR", "List already contains this title!", parent=root
+                )
         else:
             file_write(title)
-            
+
     except FileNotFoundError:
-            file_write(title)
-            
- # Function that returns a random title
-def random_title():  
+        file_write(title)
+
+
+# Function that returns a random title
+def random_title():
     try:
-        
+
         file_size = os.path.getsize('Reading List.txt')
 
-        if(file_size == 0):
+        if (file_size == 0):
             messagebox.showerror("ERROR", "List is empty", parent=root)
         else:
             with open('Reading List.txt', 'r') as file:
                 lines = file.readlines()
                 choice = random.choice(lines).strip()
                 width = len(choice) * 10
-                font = font=("tahoma", 10, "bold")
+                font = font = ("tahoma", 10, "bold")
                 random_title_box.config(text=choice, width=width, font=font)
     except FileNotFoundError:
         messagebox.showerror("ERROR", "List file does not exist", parent=root)
-        
+
+
 # Writes title into txt and erases entry box
 def file_write(title):
     with open('Reading List.txt', 'a') as file:
-                file.write(f"[{title}]\n")
-                title_entry_box.delete(0, tk.END)
-    
+        file.write(f"[{title}]\n")
+        title_entry_box.delete(0, tk.END)
+
+
 # launches file sit to variable
 def launch_file():
     os.startfile('Reading List.txt')
-    
+
+
 # Allows ESC to close GUI
 def esc_bind():
     root.destroy()
-    
+
+
 # Customization variables
 button_bg = "#F4F3ED"
 button_fg = "black"
@@ -142,14 +149,29 @@ random_title_box.config(
     relief=tk.SUNKEN
 )
 
-title_entry_box.place(relx=0.5, rely=0.42, anchor="center", width=600, height=25)
-random_title_box.place(relx=0.5, rely=0.70, anchor="center", width=600, height=25)
+title_entry_box.place(
+    relx=0.5, rely=0.42, anchor="center", width=600, height=25
+    )
 
-random_title_button.place(relx=0.5, rely=0.80, anchor="center")
-text_file_button.place(relx=0.89, rely=0.03)
+random_title_box.place(
+    relx=0.5, rely=0.70, anchor="center", width=600, height=25
+    )
 
-title_entry_label.place(relx=0.5, rely=0.35, anchor="center", width=500, height=25)
-random_title_label.place(relx=0.5, rely=0.63, anchor="center", width=500, height=25)
+random_title_button.place(
+    relx=0.5, rely=0.80, anchor="center"
+    )
+
+text_file_button.place(
+    relx=0.89, rely=0.03
+    )
+
+title_entry_label.place(
+    relx=0.5, rely=0.35, anchor="center", width=500, height=25
+    )
+
+random_title_label.place(
+    relx=0.5, rely=0.63, anchor="center", width=500, height=25
+    )
 
 # Keybinds
 title_entry_box.bind("<Return>", lambda event: get_title())

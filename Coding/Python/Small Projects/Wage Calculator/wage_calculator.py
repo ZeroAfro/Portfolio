@@ -4,30 +4,36 @@
 
 from sys import exit
 
+
 # Function to add spacing
 def space():
     print(" ")
-    
+
+
 # Start of code
 print("Welcome to the wage calcuator!")
 space()
 
 while True:
 
-    answer = input("Would you like to calculate (R)egular/(O)vertime/(E)xit: ").strip().lower()
+    answer = input(
+        "Would you like to calculate (R)egular/(O)vertime/(E)xit: "
+        ).strip().lower()
     space()
 
-    while True: 
+    while True:
 
         if answer in ["r", "regular"]:
 
-            try:            
+            try:
                 hours_worked = float(input("How many hours did you work?: "))
                 space()
 
                 while True:
                     try:
-                        hourly_wage = float(input("What's your hourly wage?: "))
+                        hourly_wage = float(
+                            input("What's your hourly wage?: ")
+                            )
                         break
                     except ValueError:
                         space()
@@ -46,20 +52,19 @@ while True:
                 print("Please enter a valid number.")
                 space()
 
-
         elif answer in ["o", "overtime"]:
 
             try:
                 hours_worked = float(input("How many hours did you work?: "))
                 space()
-
                 if hours_worked > 40:
 
                     while True:
 
-                        try:           
-
-                            hourly_wage = float(input("What's your hourly wage?: "))
+                        try:
+                            hourly_wage = float(
+                                input("What's your hourly wage?: ")
+                                )
                             space()
                             break
 
@@ -87,10 +92,10 @@ while True:
                 space()
                 print("Please enter a valid number.")
                 space()
-                
+
         elif answer in ["e", "exit"]:
             exit()
-            
+
         else:
             print("Please enter a valid option")
             space()

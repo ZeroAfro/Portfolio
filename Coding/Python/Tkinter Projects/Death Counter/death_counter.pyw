@@ -4,6 +4,7 @@ import tkinter as tk
 with open('counter.txt', 'r') as file:
     death_count = int(file.read().strip())
 
+
 # Resets death counter
 def reset_count():
     global death_count
@@ -13,6 +14,7 @@ def reset_count():
         file.write('0')
         count_display.config(text=f"{death_count}", font=('Helvetica', 25))
 
+
 # Incraments death counter
 def increase_count():
     global death_count
@@ -21,12 +23,14 @@ def increase_count():
         count_display.config(text=f"{death_count}", font=('Helvetica', 25))
         file.truncate()
         file.write(str(death_count))
-# Widgets    
-root=tk.Tk()
-count_button=tk.Button(root)
-count_label=tk.Label(root)
-count_display=tk.Message(root)
-reset_button=tk.Button(root)
+
+
+# Widgets
+root = tk.Tk()
+count_button = tk.Button(root)
+count_label = tk.Label(root)
+count_display = tk.Message(root)
+reset_button = tk.Button(root)
 
 # Root window config
 root.title("Death Counter")

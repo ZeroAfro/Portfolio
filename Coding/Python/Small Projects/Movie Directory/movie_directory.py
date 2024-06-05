@@ -16,7 +16,7 @@ def exit_prompt():
             exit()
         elif answer in ["n", "no"]:
             break
-        else:    
+        else:
             print("Please enter a valid option.")
             exit_prompt()
 
@@ -30,10 +30,11 @@ while True:
     if user_input in ["v", "view"]:
 
         answer = input(
-            "Would you like to view the whole directory or a specific movie by index number? (Whole/Index): "
+            "Would you like to view the whole directory or\
+             a specific movie by index number? (Whole/Index): "
             ).strip().lower()
 
-        if answer in ["w", "whole"]:           
+        if answer in ["w", "whole"]:
             # For loop to interate through each movie and prints it
             for movies in movie_list:
                 print(f"<{movies}>")
@@ -45,7 +46,8 @@ while True:
                 try:
                     movie_index_number = int(
                         input(
-                            "Please enter the index number of the movie you would like to view: "
+                            "Please enter the index number\
+                             of the movie you would like to view: "
                             )
                         )
                     print({movie_list[movie_index_number]})
@@ -79,7 +81,8 @@ while True:
             try:
                 removed_movie_index = int(
                     input(
-                        "What is the index number of the movie you would like to remove?: "
+                        "What is the index number of\
+                        the movie you would like to remove?: "
                         )
                     )
                 movie_title = movie_list[removed_movie_index][0]
