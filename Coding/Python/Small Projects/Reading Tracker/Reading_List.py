@@ -135,8 +135,8 @@ while True:
 
         while True:
             answer = input(
-                "Are you sure? Please type 'Delete Now' to confirm or\
-                '(E)xit for the main menu: "
+                "Are you sure? Please type 'Delete Now' to confirm or"
+                " (E)xit for the main menu: "
                 ).strip().title()
             space()
 
