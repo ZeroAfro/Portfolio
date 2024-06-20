@@ -54,6 +54,10 @@ def randomize():
             break
 
 
+def esc_bind():
+    root.destroy()
+
+
 root = tk.Tk()
 root.title("Valorant Randomizer")
 root.iconbitmap('resources/val_icon.ico')
@@ -82,5 +86,6 @@ random_agent_box.config(
 random_agent_box.place_forget()
 
 root.bind('<Return>', lambda event: randomize())
+root.bind('<Escape>', lambda event: esc_bind())
 
 root.mainloop()
