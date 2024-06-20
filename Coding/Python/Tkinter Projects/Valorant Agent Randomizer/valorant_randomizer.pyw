@@ -81,6 +81,6 @@ random_agent_box.config(
 )
 random_agent_box.place_forget()
 
-root.bind('<Return>', lambda event:randomize())
+root.bind('<Return>', lambda event: randomize())
 
 root.mainloop()
