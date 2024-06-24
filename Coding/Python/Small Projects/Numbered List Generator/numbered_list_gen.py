@@ -17,7 +17,7 @@ while True:
         print("Please enter a valid number.")
 
 # Openning the file in write mode and executing while loop
-with open('numbered_list.txt', 'w') as file:
+with open("numbered_list.txt", "w") as file:
     i = 0
     while i < list_length:
         i += 1

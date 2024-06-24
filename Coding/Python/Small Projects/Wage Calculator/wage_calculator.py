@@ -16,9 +16,11 @@ space()
 
 while True:
 
-    answer = input(
-        "Would you like to calculate (R)egular/(O)vertime/(E)xit: "
-        ).strip().lower()
+    answer = (
+        input("Would you like to calculate (R)egular/(O)vertime/(E)xit: ")
+        .strip()
+        .lower()
+    )
     space()
 
     while True:

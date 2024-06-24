@@ -8,7 +8,7 @@ import random
 
 # Setting up the absolute path for the file
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
-file_path = os.path.join(os.getcwd(), 'Reading List.txt')
+file_path = os.path.join(os.getcwd(), "Reading List.txt")
 
 
 # Spacing function
@@ -20,9 +20,11 @@ def space():
 def exit_prompt():
 
     while True:
-        answer = input(
-            "Would you like to go back to the main menu? (Y/N): "
-             ).strip().lower()
+        answer = (
+            input(
+                "Would you like to go back to the main menu? (Y/N): "
+                ).strip().lower()
+        )
         space()
 
         if answer in ["y", "yes"]:
@@ -75,14 +77,14 @@ while True:
 
             if answer in ["s", "single"]:
 
-                with open('Reading List.txt', 'a') as file:
+                with open("Reading List.txt", "a") as file:
 
                     while True:
 
                         title = input("What's the title?:\n").strip().title()
 
                         space()
-                        file.write(f"[{title}]" + '\n')
+                        file.write(f"[{title}]" + "\n")
                         print(f"[{title}] has been added!")
                         space()
                         break
@@ -90,14 +92,14 @@ while True:
 
             elif answer in ["m", "mass"]:
 
-                with open('Reading List.txt', 'a') as file:
+                with open("Reading List.txt", "a") as file:
 
                     while True:
 
                         title = input("[Title]:\n").strip().title()
 
                         space()
-                        file.write(f"[{title}]" + '\n')
+                        file.write(f"[{title}]" + "\n")
                         mass_title()
 
             else:
@@ -107,19 +109,19 @@ while True:
 
     elif answer in ["r", "random"]:
 
-        with open("Reading List.txt", 'r') as file:
+        with open("Reading List.txt", "r") as file:
 
             lines = file.readlines()
             file_size = os.path.getsize(file_path)
 
             # TODO: The ability to select a specific amount of random titles
-            if (file_size == 0):
+            if file_size == 0:
                 space()
                 print("The list is empty")
                 space()
                 exit_prompt()
                 space()
-            elif (file_size > 0):
+            elif file_size > 0:
                 choice = random.choice(lines).strip()
                 space()
                 print(f"<{choice}>")
@@ -134,10 +136,14 @@ while True:
     elif answer in ["d", "delete"]:
 
         while True:
-            answer = input(
-                "Are you sure? Please type 'Delete Now' to confirm or"
-                " (E)xit for the main menu: "
-                ).strip().title()
+            answer = (
+                input(
+                    "Are you sure? Please type 'Delete Now' to confirm or"
+                    " (E)xit for the main menu: "
+                )
+                .strip()
+                .title()
+            )
             space()
 
             if answer == "Delete Now":

@@ -29,10 +29,14 @@ while True:
 
     if user_input in ["v", "view"]:
 
-        answer = input(
-            "Would you like to view the whole directory or"
-            " a specific movie by index number? (Whole/Index): "
-            ).strip().lower()
+        answer = (
+            input(
+                "Would you like to view the whole directory or"
+                " a specific movie by index number? (Whole/Index): "
+            )
+            .strip()
+            .lower()
+        )
 
         if answer in ["w", "whole"]:
             # For loop to interate through each movie and prints it
@@ -48,8 +52,8 @@ while True:
                         input(
                             "Please enter the index number"
                             " of the movie you would like to view: "
-                            )
                         )
+                    )
                     print({movie_list[movie_index_number]})
                     exit_prompt()
                 except IndexError:
@@ -65,11 +69,11 @@ while True:
 
         # Takes user inputs and formats them for the list
         new_entry = (
-                    movie_name.strip().title(),
-                    director_name.strip().title(),
-                    release_year.strip(),
-                    movie_budget.strip()
-                    )
+            movie_name.strip().title(),
+            director_name.strip().title(),
+            release_year.strip(),
+            movie_budget.strip(),
+        )
         movie_list.append(new_entry)
 
         print(f"<{new_entry[0]}> has been added to the directory!")
@@ -83,8 +87,8 @@ while True:
                     input(
                         "What is the index number of"
                         " the movie you would like to remove?: "
-                        )
                     )
+                )
                 movie_title = movie_list[removed_movie_index][0]
                 print(f"Movie: {movie_list} has been deleted!")
                 removed_movie_index = int(removed_movie_index)
