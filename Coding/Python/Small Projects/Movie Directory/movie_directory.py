@@ -1,14 +1,12 @@
 # Movie Directory Program
 
-# Library Imports
 from sys import exit
 
-# Place holder for directory
 movie_list = []
 
 
-# Function asking if they would like to continue
 def exit_prompt():
+    """Asks if they would like to exit the program"""
     while True:
         answer = input("Will that be all? (Y/N): ").strip().lower()
 
@@ -39,7 +37,6 @@ while True:
         )
 
         if answer in ["w", "whole"]:
-            # For loop to interate through each movie and prints it
             for movies in movie_list:
                 print(f"<{movies}>")
             exit_prompt()
@@ -67,7 +64,6 @@ while True:
         release_year = input("Release Year?: ")
         movie_budget = input("Budget: ")
 
-        # Takes user inputs and formats them for the list
         new_entry = (
             movie_name.strip().title(),
             director_name.strip().title(),

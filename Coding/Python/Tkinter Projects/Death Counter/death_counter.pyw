@@ -5,8 +5,9 @@ with open("counter.txt", "r") as file:
     death_count = int(file.read().strip())
 
 
-# Resets death counter
+
 def reset_count():
+    """Resets death counter"""
     global death_count
     death_count = 0
     with open("counter.txt", "r+") as file:
@@ -15,8 +16,8 @@ def reset_count():
         count_display.config(text=f"{death_count}", font=("Helvetica", 25))
 
 
-# Incraments death counter
 def increase_count():
+    """Incraments death counter"""
     global death_count
     with open("counter.txt", "r+") as file:
         death_count += 1
@@ -25,14 +26,12 @@ def increase_count():
         file.write(str(death_count))
 
 
-# Widgets
 root = tk.Tk()
 count_button = tk.Button(root)
 count_label = tk.Label(root)
 count_display = tk.Message(root)
 reset_button = tk.Button(root)
 
-# Root window config
 root.title("Death Counter")
 root.geometry("290x240")
 root.resizable(width=False, height=False)

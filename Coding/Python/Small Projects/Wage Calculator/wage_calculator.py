@@ -1,21 +1,18 @@
 # Wage Calculator
-
 # TODO: Add exit confirmations and statements
 
 from sys import exit
 
 
-# Function to add spacing
 def space():
+    """Adds spacing for text"""
     print(" ")
 
 
-# Start of code
 print("Welcome to the wage calcuator!")
 space()
 
 while True:
-
     answer = (
         input("Would you like to calculate (R)egular/(O)vertime/(E)xit: ")
         .strip()
@@ -24,9 +21,7 @@ while True:
     space()
 
     while True:
-
         if answer in ["r", "regular"]:
-
             try:
                 hours_worked = float(input("How many hours did you work?: "))
                 space()
@@ -48,28 +43,22 @@ while True:
                 print(f"You earned: ${earnings:.2f}")
                 space()
                 break
-
             except ValueError:
                 space()
                 print("Please enter a valid number.")
                 space()
-
         elif answer in ["o", "overtime"]:
-
             try:
                 hours_worked = float(input("How many hours did you work?: "))
                 space()
                 if hours_worked > 40:
-
                     while True:
-
                         try:
                             hourly_wage = float(
                                 input("What's your hourly wage?: ")
                                 )
                             space()
                             break
-
                         except ValueError:
                             space()
                             print("Please enter a valid number.")
@@ -81,12 +70,10 @@ while True:
                     print(f"You earned: ${overtime_pay:.2f} in overtime.")
                     space()
                     break
-
                 elif hours_worked <= 40:
                     print("Overtime not earned.")
                     space()
                     break
-
                 else:
                     print("Please entera valid number.")
                     space()
@@ -94,10 +81,8 @@ while True:
                 space()
                 print("Please enter a valid number.")
                 space()
-
         elif answer in ["e", "exit"]:
             exit()
-
         else:
             print("Please enter a valid option")
             space()

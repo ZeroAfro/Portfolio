@@ -34,13 +34,13 @@ previous_agent = None
 
 
 def randomize():
+    """Randomizes agent"""
     global previous_agent
     random_agent_box.place(
         x=300,
         y=320,
         anchor="n",
     )
-
     while True:
         random_agent = random.choice(agents)
         if random_agent != previous_agent and random_agent != "KAY/0":
@@ -55,6 +55,7 @@ def randomize():
 
 
 def esc_bind():
+    "Binds 'ESC' key to closing window"
     root.destroy()
 
 
