@@ -6,7 +6,6 @@ import random
 from tkinter import messagebox
 
 
-# Function that grabs and filters titles entered
 def get_title():
     """Grabs title and filters for common issues"""
     title = title_entry_box.get().strip().title()
