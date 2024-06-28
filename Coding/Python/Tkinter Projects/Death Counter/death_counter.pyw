@@ -1,3 +1,7 @@
+"""
+A simple death counter that can track and reset your deaths in video games
+"""
+
 import tkinter as tk
 
 
@@ -5,9 +9,9 @@ with open("counter.txt", "r") as file:
     death_count = int(file.read().strip())
 
 
-
 def reset_count():
     """Resets death counter"""
+
     global death_count
     death_count = 0
     with open("counter.txt", "r+") as file:
@@ -18,6 +22,7 @@ def reset_count():
 
 def increase_count():
     """Incraments death counter"""
+
     global death_count
     with open("counter.txt", "r+") as file:
         death_count += 1

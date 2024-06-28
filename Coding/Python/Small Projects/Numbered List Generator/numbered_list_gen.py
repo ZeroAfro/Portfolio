@@ -1,4 +1,5 @@
-# Numbered List Generator
+"""Generates a empty numbered and formated list based on user input"""
+
 # TODO: Figure out why I have to use os.chdir to ensure file creation
 
 import os

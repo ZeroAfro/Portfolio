@@ -1,4 +1,4 @@
-# Movie Directory Program
+"""Movie Directory program that tracks movie information into a list"""
 
 from sys import exit
 

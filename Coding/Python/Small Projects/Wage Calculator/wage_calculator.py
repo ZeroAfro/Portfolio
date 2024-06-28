@@ -1,4 +1,8 @@
-# Wage Calculator
+"""
+Calculates wage based on regular hours and overtimehours
+based on american standard of times 1.5 base pay
+"""
+
 # TODO: Add exit confirmations and statements
 
 from sys import exit
@@ -6,6 +10,7 @@ from sys import exit
 
 def space():
     """Adds spacing for text"""
+
     print(" ")
 
 

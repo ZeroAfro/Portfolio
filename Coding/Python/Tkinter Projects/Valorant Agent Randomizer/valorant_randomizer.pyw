@@ -1,6 +1,13 @@
+"""
+A randomizer for the game 'Valorant'.
+It pulls a random value out of the list and displays it
+"""
+
 import tkinter as tk
 from PIL import Image, ImageTk
 import random
+
+"""You can remove any agents you do not have"""
 
 agents = [
     "brimstone",
@@ -35,6 +42,7 @@ previous_agent = None
 
 def randomize():
     """Randomizes agent"""
+
     global previous_agent
     random_agent_box.place(
         x=300,
@@ -42,6 +50,9 @@ def randomize():
         anchor="n",
     )
     while True:
+        # Checks if the previous agent is the same as the currently
+        # selected agent and if it is then it generates another
+        # agent and also filters out 'KAY/0' from being formated
         random_agent = random.choice(agents)
         if random_agent != previous_agent and random_agent != "KAY/0":
             random_agent_title = random_agent.title()
@@ -56,6 +67,7 @@ def randomize():
 
 def esc_bind():
     "Binds 'ESC' key to closing window"
+
     root.destroy()
 
 
