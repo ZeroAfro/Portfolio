@@ -58,7 +58,7 @@ while active:
         "\t-Single Dice Roll(single)\n"
         "\t-Multi Dice Roll(multi)\n"
         "\t-Check Roll Count(count)\n"
-        "\t-Reset Roll Count(reset\n"
+        "\t-Reset Roll Count(reset)\n"
     )
     answer = input("").strip().lower()
 
