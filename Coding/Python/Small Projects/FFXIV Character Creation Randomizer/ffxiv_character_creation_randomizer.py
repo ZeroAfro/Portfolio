@@ -83,13 +83,6 @@ race_keys = list(races.keys())
 specializations_key = list(specializations.keys())
 clans = list(races.values())
 
-answer = None
-race = None
-clan = None
-gender = None
-starting_class = None
-deity = None
-specialization = None
 main = True
 sub_main = True
 race_clan_selection = True
