@@ -205,6 +205,7 @@ while main:
         new_character.random_deity()
 
         new_character.display_character()
+        input("Press 'ENTER' to quit")
         quit_prompt()
         break
 
@@ -503,6 +504,7 @@ while main:
                     "Here is your randomized character:\n"
                 )
                 new_character.display_character()
+                input("Press 'ENTER' to quit")
                 quit_prompt()
                 break
 
