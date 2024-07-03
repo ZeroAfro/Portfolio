@@ -218,14 +218,16 @@ while main:
             while race_clan_selection:
                 answer = input("Would you like to randomize your race?: "
                                ).strip().lower()
+
                 if answer == "yes":
                     answer = input(
-                        "Would you like to also randomize your clan?: ")
+                        "Would you like to also randomize your clan?: "
+                                   ).strip().lower()
 
                     if answer == "yes":
 
                         new_character.random_race()
-                        print("\nRace and Clan has been randomized!\n")
+                        print("\nYour race and clan has been randomized!\n")
                         gender_selection = True
                         race_clan_selection = False
 
@@ -246,6 +248,10 @@ while main:
                         ).strip()
 
                         new_character.clan = clan
+                        print(f"\nYou chose {new_character.clan} "
+                              f"from {new_character.race}\n"
+                              )
+
                         gender_selection = True
                         race_clan_selection = False
 
@@ -254,7 +260,8 @@ while main:
                         break
 
                 elif answer == "no":
-                    answer = input("Would you like to randomize a clan?: ")
+                    answer = input("Would you like to randomize a clan?: "
+                                   ).strip().lower()
 
                     if answer == "yes":
                         print(
@@ -267,7 +274,8 @@ while main:
                             print(f"[{n}] {race}\n")
                             n += 1
 
-                        race = input("Option: ")
+                        race = input("Option: ").strip()
+                        print("\n")
 
                         if race == "1":
                             new_character.race = "Hyur"
@@ -294,6 +302,11 @@ while main:
                             new_character.race = "Viera"
 
                         new_character.random_race()
+                        print(
+                            f"You chose {new_character.race} and were "
+                            "given one of their clans at random.\n"
+                              )
+
                         gender_selection = True
                         race_clan_selection = False
 
@@ -309,7 +322,8 @@ while main:
                             print(f"[{n}] {race}\n")
                             n += 1
 
-                        race = input("Option: ")
+                        race = input("Option: ").strip()
+                        print("\n")
 
                         if race == "1":
                             new_character.race = "Hyur"
@@ -335,7 +349,7 @@ while main:
                         elif race == "8":
                             new_character.race = "Viera"
 
-                        print(f"Since you chose [{new_character.race}].\n")
+                        print(f"\nYou chose {new_character.race}.\n")
                         print("\nYou can choose from the following clans: \n")
 
                         for race, clans in races.items():
@@ -349,6 +363,11 @@ while main:
                         ).strip()
 
                         new_character.clan = clan
+                        print(
+                            f"\nYou chose {new_character.clan} from "
+                            f"the {new_character.race} race.\n"
+                        )
+
                         gender_selection = True
                         race_clan_selection = False
 
@@ -377,8 +396,11 @@ while main:
                     for gender in genders:
                         print(f"\t-{gender}")
                     print("\n")
-                    gender = input("Option: ")
+                    gender = input("Option: ").strip().title()
+
                     new_character.gender = gender
+                    print(f"You chose {new_character.gender}.")
+
                     class_specialization_selection = True
                     gender_selection = False
 
@@ -392,27 +414,39 @@ while main:
             while class_specialization_selection:
                 starting_class = input(
                     "Would you like to randomize your starting class?: "
-                    )
+                    ).strip().lower()
 
                 if starting_class == "yes":
                     specialization = input(
-                        "\nWould you like to base"
-                        " it off a random specialization?: "
-                    )
+                        "\nWould you like to choose your specialization?: "
+                        ).strip().lower()
 
                     if specialization == "yes":
-                        new_character.random_specialization
-                        new_character.random_starting_class
+                        print("\nPlease choose from the following options:\n")
+                        for specialization in specializations:
+                            print(f"-{specialization}")
+                        print("\n")
+
+                        specialization = input("Option: ").strip()
+
                         print(
-                            "\nYour class has been randomized based "
-                            "on your randomly chosen specialization\n"
-                        )
+                            "\nYour starting class has been randomized.\n"
+                              )
+
+                        new_character.specialization = specialization
+                        new_character.random_starting_class()
+
                         deity_selection = True
                         class_specialization_selection = False
 
                     elif specialization == "no":
                         new_character.random_starting_class()
-                        print("\nYour starting class has been randomized!\n")
+                        print(
+                            "\nYour class and specialization has been "
+                            "randomized based on your randomly chosen "
+                            "specialization\n")
+                        deity_selection = True
+                        class_specialization_selection = False
 
                 elif starting_class == "no":
                     print(
@@ -424,9 +458,11 @@ while main:
                         print(f"\t-{classes}")
                     print("\n")
 
-                    starting_class = input("Option: ")
+                    starting_class = input("Option: ").strip().capitalize()
 
                     new_character.starting_class = starting_class
+                    print(f"\nYou chose {new_character.starting_class}\n")
+
                     new_character.random_starting_class()
                     deity_selection = True
                     class_specialization_selection = False
@@ -442,9 +478,10 @@ while main:
 
                 deity = input("Would you like to randomize your deity?: "
                               ).strip().lower()
+
                 if deity == "yes":
                     new_character.random_deity()
-                    print("Your deity has been randomized!")
+                    print("\nYour deity has been randomized!\n")
                     character_description = True
                     deity_selection = False
 
@@ -454,9 +491,11 @@ while main:
                         print(f"\t-{deity}")
                     print("\n")
 
-                    deity = input("Option: ")
+                    deity = input("Option: ").strip().capitalize()
 
                     new_character.deity = deity
+                    print(f"You chose {new_character.deity}")
+
                     character_description = True
                     deity_selection = False
 
