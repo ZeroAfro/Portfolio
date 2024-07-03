@@ -14,6 +14,7 @@ def quit_prompt():
     global character_description
 
     print("\nGoodbye!\n")
+
     main = False
     sub_main = False
     gender_selection = False
