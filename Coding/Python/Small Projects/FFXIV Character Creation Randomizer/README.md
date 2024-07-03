@@ -7,4 +7,3 @@ This will help you randomize a character for FFXIV in character creation and wil
 - Specialization
 - Deity
 You can choose to randomize all or a combination of them.
-
