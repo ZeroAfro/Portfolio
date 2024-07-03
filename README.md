@@ -4,6 +4,6 @@ Welcome to my portfolio! This repository contains a collection of my work across
 
 ## Contents
 
-- [Cyber Security](#cyber-security)
-- [Coding](#coding)
-- [Web Development](#web-development)
+- Cyber Security
+- Coding
+- Web Development
