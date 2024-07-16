@@ -28,9 +28,9 @@ class Dice:
     def multi_roll(self, rolls):
         """Rolls the dice multiple times"""
 
-        dice = randint(1, self.side)
         print("\n")
         for dice in range(rolls):
+            dice = randint(1, self.side)
             self.roll_amount += 1
             print(f"\t{dice}")
         print("\n")
