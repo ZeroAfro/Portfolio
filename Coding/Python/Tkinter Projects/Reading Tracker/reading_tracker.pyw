@@ -21,6 +21,7 @@ def get_title():
     title = title.replace("I'M", "I'm")
     title = title.replace("'T", "'t")
     title = title.replace("'Re", "'re")
+    title = title.replace("I'Ll", "I'll")
 
     if title == "":
         messagebox.showerror("ERROR", "No title was entered!", parent=root)
