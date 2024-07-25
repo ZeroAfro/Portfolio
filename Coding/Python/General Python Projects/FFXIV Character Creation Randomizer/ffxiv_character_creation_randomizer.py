@@ -178,7 +178,7 @@ class Character:
                     self.race = race
 
         elif self.clan is None and self.race:
-            for race, clan in races.items():
+            for race, _clan in races.items():
                 if self.race in race:
                     self.clan = random.choice(races[self.race])
 
@@ -205,7 +205,7 @@ class Character:
                     self.specialization = specialization
 
         elif self.starting_class is None and self.specialization:
-            for specialization, classes in specializations.items():
+            for _specialization, _classes in specializations.items():
                 if self.specialization in specializations:
                     self.starting_class = random.choice(
                         specializations[self.specialization]
