@@ -1,3 +1,3 @@
 # Dice Roll Visualization
 
-By default it is based on the possible combinations of the sum of two d6 die.
+By default the `num_sides` is set for 6 for a six sided die and this graphes the possible outcomes of the sum of two d6 dice.
