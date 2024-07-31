@@ -9,42 +9,53 @@ import random
 from tkinter import messagebox
 
 
-def get_title():
-    """Grabs title and filters for common issues"""
+def grab_title():
+    """Grabs text from entry box"""
 
-    # When copy/pasting titles from aggregator sites
-    # these are common formating issues that will come up
     title = title_entry_box.get().strip().title()
+    title = title_filtering(title)
+    entry_box_errors(title)
+
+
+def entry_box_errors(title):
+    """Checks to see if the title is already listed and if the file exists"""
+
+    if title == "":
+        messagebox.showerror("ERROR", "No title was entered!", parent=root)
+    elif title:
+
+        try:
+
+            with open("Reading List.txt", "r+") as file:
+                lines = file.read().splitlines()
+
+            if title in lines:
+                title_entry_box.delete(0, tk.END)
+                messagebox.showerror(
+                    "ERROR", "List already contains this title!", parent=root
+                )
+            else:
+                file_write(title)
+
+        except FileNotFoundError:
+            file_write(title)
+
+
+def title_filtering(title):
+    """Filters titles for common formating issues"""
+
+# The website I copy/paste a lot of my titles from has some formating issues
     title = title.replace("â€™S", "'s")
     title = title.replace("â€™R", "'r")
     title = title.replace("'S", "'s")
     title = title.replace("I'M", "I'm")
     title = title.replace("'T", "'t")
     title = title.replace("'Re", "'re")
-    title = title.replace("I'Ll", "I'll")
-
-    if title == "":
-        messagebox.showerror("ERROR", "No title was entered!", parent=root)
-    try:
-        with open("Reading List.txt", "r+") as file:
-            lines = file.readlines()
-
-        # Searches line for line to see if any of the currently saved titles
-        # matches the currently entered title and that the
-        # title you entered wasn't blank
-        if any(title in line for line in lines) and title != "":
-            title_entry_box.delete(0, tk.END)
-            messagebox.showerror(
-                "ERROR", "List already contains this title!", parent=root
-            )
-        else:
-            file_write(title)
-    except FileNotFoundError:
-        file_write(title)
+    return title
 
 
 def random_title():
-    """Grabs and displays random title"""
+    """Grabs and displays a random title"""
 
     try:
 
@@ -55,10 +66,11 @@ def random_title():
         else:
             with open("Reading List.txt", "r") as file:
                 lines = file.readlines()
-                choice = random.choice(lines).strip()
+                choice = random.choice(lines)
                 width = len(choice) * 10
-                font = font = ("tahoma", 10, "bold")
+                font = ("tahoma", 10, "bold")
                 random_title_box.config(text=choice, width=width, font=font)
+
     except FileNotFoundError:
         messagebox.showerror("ERROR", "List file does not exist", parent=root)
 
@@ -72,13 +84,13 @@ def file_write(title):
 
 
 def launch_file():
-    """Opens file when button is pressed"""
+    """Opens'Reading List.txt' when pressed"""
 
     os.startfile("Reading List.txt")
 
 
 def esc_bind():
-    """Binds the 'ESC' key to closing the window"""
+    """Binds the 'ESC' key to the closing of the GUI window"""
 
     root.destroy()
 
@@ -128,13 +140,13 @@ text_file_button.config(
     fg=button_fg,
     command=launch_file,
 )
-
 title_entry_box.config(
     fg=box_fg,
     bg=box_bg,
     font=("segoe", 10, "bold"),
     insertbackground="#ff4d4d",
 )
+
 random_title_box.config(fg=box_fg, bg=box_bg, relief=tk.SUNKEN)
 
 title_entry_box.place(
@@ -170,7 +182,7 @@ random_title_label.place(
     height=25,
 )
 
-title_entry_box.bind("<Return>", lambda event: get_title())
+title_entry_box.bind("<Return>", lambda event: grab_title())
 root.bind("<Escape>", lambda event: esc_bind())
 
 root.mainloop()
