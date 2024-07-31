@@ -1,6 +1,6 @@
 # Python Portfolio
 
-Welcome to my Python Portfolio! This repository showcases various Python projects I've worked on. It is organized into two main categories: `Tkinter Projects` and `General Python Projects`.
+Welcome to my Python Portfolio! This repository showcases various Python projects I've worked on. It is organized into three main categories: `Tkinter Projects`, `General Python Projects`, and `Data Visualization Projects`.
 
 ## Project Structure
 
