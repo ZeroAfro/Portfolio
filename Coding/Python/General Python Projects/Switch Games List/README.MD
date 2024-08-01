@@ -13,5 +13,5 @@ This Python script helps catalog and organize your Switch game collection. It sa
 
 1. **Start the Script**: Run the script to begin.
 2. **Add a Game**: Enter the title of a new Switch game to add it to the list.
-3. **Show Sorted List**: Type 's' to display the list in sorted order.
+3. **Show Sorted List**: Type 'v' to display the list in sorted order.
 4. **Quit**: Type 'q' to quit and save the list to the JSON file.
