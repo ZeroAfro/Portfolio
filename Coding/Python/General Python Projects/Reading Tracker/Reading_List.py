@@ -10,12 +10,15 @@ file_path = os.path.join(os.getcwd(), "Reading List.txt")
 
 def space():
     """Addes spacing for text"""
+
     print(" ")
 
 
-
 def exit_prompt():
-    """Prompts the user if they would like to exit or go back to the main options"""
+    """
+    Prompts the user if they would like to exit or go back to the main options
+    """
+
     while True:
         answer = (
             input(
@@ -34,20 +37,23 @@ def exit_prompt():
             space()
             print("Please enter a valid option.")
             space()
-            exit_prompt()
 
+            exit_prompt()
 
 
 def mass_title():
     """Function to allow for faster entry of titles"""
+
     while True:
         answer = input("More? (Y/N): ").strip().lower()
         space()
 
         if answer in ["y", "yes"]:
             break
+
         elif answer in ["n", "no"]:
             exit()
+
         else:
             space()
             print("Please enter a valid option.")
@@ -55,14 +61,18 @@ def mass_title():
 
 
 while True:
-    print("[Options:]")
-    print(" ")
-    print("(A)dd")
-    print("(R)andom")
-    print("(D)elete")
-    print("(E)xit")
-    space()
 
+    print(
+        """
+          [Options:]
+
+          \t(A)dd
+          \t(R)andom
+          \t(D)elete
+          \t(E)xit
+          """
+          )
+    space()
     answer = input("Please enter one of the above options: ").strip().lower()
     space()
 
@@ -73,6 +83,7 @@ while True:
 
             if answer in ["s", "single"]:
                 with open("Reading List.txt", "a") as file:
+
                     while True:
                         title = input("What's the title?:\n").strip().title()
 
@@ -82,18 +93,22 @@ while True:
                         space()
                         break
                 break
+
             elif answer in ["m", "mass"]:
                 with open("Reading List.txt", "a") as file:
+
                     while True:
                         title = input("[Title]:\n").strip().title()
 
                         space()
                         file.write(f"[{title}]" + "\n")
                         mass_title()
+
             else:
                 space()
                 print("Please enter a valid option.")
                 space()
+
     elif answer in ["r", "random"]:
         with open("Reading List.txt", "r") as file:
 
@@ -107,17 +122,18 @@ while True:
                 space()
                 exit_prompt()
                 space()
+
             elif file_size > 0:
                 choice = random.choice(lines).strip()
                 space()
                 print(f"<{choice}>")
                 space()
-                continue
+
             else:
                 space()
                 print("An unknown error has occured.")
                 space()
-                continue
+
     elif answer in ["d", "delete"]:
         while True:
             answer = (
@@ -129,21 +145,27 @@ while True:
                 .title()
             )
             space()
+
             if answer == "Delete Now":
                 open("Reading List.txt", "w").close()
                 space()
                 print("List has been deleted!")
                 space()
+
                 exit_prompt()
+
             elif answer in ["E", "Exit"]:
                 space()
                 break
+
             else:
                 space()
                 print("Please enter a valid option.")
                 space()
+
     elif answer in ["e", "exit"]:
         exit()
+
     else:
         space()
         print("Please enter a valid option.")

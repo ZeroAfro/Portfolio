@@ -60,9 +60,10 @@ while active:
         "\t-Check Roll Count(count)\n"
         "\t-Reset Roll Count(reset)\n"
     )
-    answer = input("").strip().lower()
 
     while True:
+        answer = input("").strip().lower()
+
         if answer == "single":
             dice_sides = input("How many sides does your dice have?: ")
 
@@ -71,9 +72,11 @@ while active:
                 dice = Dice(dice_sides)
                 dice.single_roll()
                 break
+
             elif dice_sides == "quit":
                 goodbye_prompt()
                 break
+
             else:
                 print("Please enter a valid number.")
 
@@ -83,23 +86,29 @@ while active:
             if dice_sides == "quit":
                 goodbye_prompt()
                 break
+
             rolls = input("How many times would you like to roll the dice?: ")
+
             if rolls == "quit":
                 goodbye_prompt()
                 break
+
             if dice_sides.isdigit() and rolls.isdigit():
                 dice_sides = int(dice_sides)
                 rolls = int(rolls)
                 dice = Dice(dice_sides)
                 dice.multi_roll(rolls)
                 break
+
             else:
                 print("Please answer valid numbers for the options.")
 
         elif answer == "count":
+
             if dice:
                 Dice.roll_count(dice)
                 break
+
             else:
                 print("\t\nYou havent rolled the dice yet.\n")
                 break
@@ -112,3 +121,8 @@ while active:
         elif answer == "quit":
             goodbye_prompt()
             break
+
+        else:
+            print("\n")
+            print("Please enter a valid option.")
+            print("\n")

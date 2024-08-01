@@ -15,11 +15,15 @@ while True:
         print("Please enter a valid number.")
 
 with open("numbered_list.txt", "w") as file:
+
     i = 0
+
     while i < list_length:
         i += 1
         file.write(f"{i}. \n")
 
 delay_time = 1
+
 print(f"Closing in {delay_time} seconds...")
+
 sleep(delay_time)

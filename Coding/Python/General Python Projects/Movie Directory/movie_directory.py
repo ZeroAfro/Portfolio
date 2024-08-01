@@ -1,4 +1,6 @@
 """Movie Directory program that tracks movie information into a list"""
+# TODO: add functionality to save output to JSON
+# TODO: List comprehension
 
 from sys import exit
 
@@ -7,26 +9,27 @@ movie_list = []
 
 def exit_prompt():
     """Asks if they would like to exit the program"""
+
     while True:
         answer = input("Will that be all? (Y/N): ").strip().lower()
 
         if answer in ["y", "yes"]:
             exit()
+
         elif answer in ["n", "no"]:
             break
+
         else:
             print("Please enter a valid option.")
             exit_prompt()
 
 
 while True:
-
     user_input = input(
         "Would you like to (View/Add/Remove/Exit): "
         ).strip().lower()
 
     if user_input in ["v", "view"]:
-
         answer = (
             input(
                 "Would you like to view the whole directory or"
@@ -37,6 +40,7 @@ while True:
         )
 
         if answer in ["w", "whole"]:
+
             for movies in movie_list:
                 print(f"<{movies}>")
             exit_prompt()
@@ -52,6 +56,7 @@ while True:
                         )
                     )
                     print({movie_list[movie_index_number]})
+
                     exit_prompt()
                 except IndexError:
                     print("Invalid index number has been entered.")
@@ -70,9 +75,11 @@ while True:
             release_year.strip(),
             movie_budget.strip(),
         )
+
         movie_list.append(new_entry)
 
         print(f"<{new_entry[0]}> has been added to the directory!")
+
         exit_prompt()
 
     elif user_input in ["r", "remove"]:
@@ -85,10 +92,15 @@ while True:
                         " the movie you would like to remove?: "
                     )
                 )
+
                 movie_title = movie_list[removed_movie_index][0]
+
                 print(f"Movie: {movie_list} has been deleted!")
+
                 removed_movie_index = int(removed_movie_index)
+
                 del movie_list[removed_movie_index]
+
                 exit_prompt()
             except IndexError:
                 print("Invalid index number has been entered.")
@@ -99,4 +111,3 @@ while True:
 
     else:
         print("Please enter a valid option.")
-        continue

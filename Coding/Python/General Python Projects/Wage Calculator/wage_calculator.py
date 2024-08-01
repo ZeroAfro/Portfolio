@@ -52,6 +52,7 @@ while True:
                 space()
                 print("Please enter a valid number.")
                 space()
+
         elif answer in ["o", "overtime"]:
             try:
                 hours_worked = float(input("How many hours did you work?: "))
@@ -75,10 +76,12 @@ while True:
                     print(f"You earned: ${overtime_pay:.2f} in overtime.")
                     space()
                     break
+
                 elif hours_worked <= 40:
                     print("Overtime not earned.")
                     space()
                     break
+
                 else:
                     print("Please entera valid number.")
                     space()
@@ -86,8 +89,10 @@ while True:
                 space()
                 print("Please enter a valid number.")
                 space()
+
         elif answer in ["e", "exit"]:
             exit()
+
         else:
             print("Please enter a valid option")
             space()

@@ -14,6 +14,7 @@ def grab_title():
 
     title = title_entry_box.get().strip().title()
     title = title_filtering(title)
+
     entry_box_errors(title)
 
 
@@ -22,10 +23,9 @@ def entry_box_errors(title):
 
     if title == "":
         messagebox.showerror("ERROR", "No title was entered!", parent=root)
+
     elif title:
-
         try:
-
             with open("Reading List.txt", "r+") as file:
                 lines = file.read().splitlines()
 
@@ -34,9 +34,9 @@ def entry_box_errors(title):
                 messagebox.showerror(
                     "ERROR", "List already contains this title!", parent=root
                 )
+
             else:
                 file_write(title)
-
         except FileNotFoundError:
             file_write(title)
 
@@ -51,6 +51,7 @@ def title_filtering(title):
     title = title.replace("I'M", "I'm")
     title = title.replace("'T", "'t")
     title = title.replace("'Re", "'re")
+
     return title
 
 
@@ -58,11 +59,11 @@ def random_title():
     """Grabs and displays a random title"""
 
     try:
-
         file_size = os.path.getsize("Reading List.txt")
 
         if file_size == 0:
             messagebox.showerror("ERROR", "List is empty", parent=root)
+
         else:
             with open("Reading List.txt", "r") as file:
                 lines = file.readlines()
@@ -70,7 +71,6 @@ def random_title():
                 width = len(choice) * 10
                 font = ("tahoma", 10, "bold")
                 random_title_box.config(text=choice, width=width, font=font)
-
     except FileNotFoundError:
         messagebox.showerror("ERROR", "List file does not exist", parent=root)
 
@@ -115,15 +115,18 @@ root.iconbitmap("resources/book.ico")
 root.geometry("900x600+490+200")
 root.resizable(width=False, height=False)
 root.config(bg="#1c1c1c", highlightcolor="#2e2e2e", highlightthickness=1.5)
+
 title_entry_label.config(
     text="Title",
     fg=label_fg,
     bg=label_bg,
     font=("segoe", 25, "bold"),
 )
+
 random_title_label.config(
     text="Random Title", fg=label_fg, bg=label_bg, font=("segoe", 25, "bold")
 )
+
 random_title_button.config(
     text="RANDOM",
     width=10,
@@ -132,6 +135,7 @@ random_title_button.config(
     fg=button_fg,
     command=random_title,
 )
+
 text_file_button.config(
     text="OPEN",
     width=10,
@@ -140,6 +144,7 @@ text_file_button.config(
     fg=button_fg,
     command=launch_file,
 )
+
 title_entry_box.config(
     fg=box_fg,
     bg=box_bg,
@@ -156,6 +161,7 @@ title_entry_box.place(
     width=600,
     height=25,
 )
+
 random_title_box.place(
     relx=0.5,
     rely=0.70,
@@ -174,6 +180,7 @@ title_entry_label.place(
     width=500,
     height=25,
 )
+
 random_title_label.place(
     relx=0.5,
     rely=0.63,

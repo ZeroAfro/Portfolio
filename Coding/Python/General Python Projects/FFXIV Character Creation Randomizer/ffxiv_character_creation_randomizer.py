@@ -83,69 +83,6 @@ def deity_selection_deactivation():
     deity_selection = False
 
 
-races = {
-    "Hyur": ["Midlander", "Highlander"],
-    "Elezen": ["Wildwood", "Duskwight"],
-    "Lalafell": ["Plainsfolk", "Dunesfolk"],
-    "Miqo'te": ["Seekers of Sun", "Keeper of the Moon"],
-    "Roegadyn": ["Sea Wolves", "Hellsguard"],
-    "Au Ra": ["Xaela", "Raen"],
-    "Hrothgar": ["Helions", "The Lost"],
-    "Viera": ["Rava", "Veena"],
-}
-
-genders = (
-    "Male",
-    "Female",
-)
-
-starting_classes = (
-    "Gladiator",
-    "Marauder",
-    "Lancer",
-    "Archer",
-    "Arcanist",
-    "Conjurer",
-    "Thaumaturge",
-    "Pugilist",
-)
-
-deities = (
-    "Halone",
-    "Menphina",
-    "Thaliak",
-    "Nymeia",
-    "Llymlaen",
-    "Oschon",
-    "Byregot",
-    "Rhalgr",
-    "Azeyma",
-    "Nald'thal",
-    "Nophica",
-    "Althyk",
-)
-
-specializations = {
-    "Tank": ["Marauder", "Gladiator"],
-    "Melee DPS": ["Lancer", "Pugilist"],
-    "Ranged Physical DPS": "Archer",
-    "Ranged Magic DPS": ["Thaumaturge", "Arcanist"],
-    "Healer": "Conjurer",
-}
-
-race_keys = list(races.keys())
-specializations_key = list(specializations.keys())
-clans = list(races.values())
-
-main = True
-sub_main = True
-race_clan_selection = True
-gender_selection = False
-class_specialization_selection = False
-deity_selection = False
-character_description = False
-
-
 class Character:
     """Models a character made in FFXIV's character creator"""
 
@@ -235,16 +172,76 @@ class Character:
         )
 
 
+races = {
+    "Hyur": ["Midlander", "Highlander"],
+    "Elezen": ["Wildwood", "Duskwight"],
+    "Lalafell": ["Plainsfolk", "Dunesfolk"],
+    "Miqo'te": ["Seekers of Sun", "Keeper of the Moon"],
+    "Roegadyn": ["Sea Wolves", "Hellsguard"],
+    "Au Ra": ["Xaela", "Raen"],
+    "Hrothgar": ["Helions", "The Lost"],
+    "Viera": ["Rava", "Veena"],
+}
+
+genders = (
+    "Male",
+    "Female",
+)
+
+starting_classes = (
+    "Gladiator",
+    "Marauder",
+    "Lancer",
+    "Archer",
+    "Arcanist",
+    "Conjurer",
+    "Thaumaturge",
+    "Pugilist",
+)
+
+deities = (
+    "Halone",
+    "Menphina",
+    "Thaliak",
+    "Nymeia",
+    "Llymlaen",
+    "Oschon",
+    "Byregot",
+    "Rhalgr",
+    "Azeyma",
+    "Nald'thal",
+    "Nophica",
+    "Althyk",
+)
+
+specializations = {
+    "Tank": ["Marauder", "Gladiator"],
+    "Melee DPS": ["Lancer", "Pugilist"],
+    "Ranged Physical DPS": "Archer",
+    "Ranged Magic DPS": ["Thaumaturge", "Arcanist"],
+    "Healer": "Conjurer",
+}
+
+race_keys = list(races.keys())
+specializations_key = list(specializations.keys())
+clans = list(races.values())
+
+main = True
+sub_main = True
+race_clan_selection = True
+gender_selection = False
+class_specialization_selection = False
+deity_selection = False
+character_description = False
+
 print(
     "Welcome to the FFXIV Character Creator Randomizer!\n\n"
     "Please select as many or as little options as you wish.\n"
     "Please type 'quit' to quit at any time.\n"
 )
 
-new_character = Character()
 
 while main:
-
     print(
         "Please select one of the following options by their number:\n\n"
         "[1] Randomize everything\n"
@@ -253,17 +250,23 @@ while main:
     answer = input("Option: ").strip()
 
     if answer == "1":
+
+        new_character = Character()
+
         new_character.random_race()
         new_character.random_gender()
         new_character.random_starting_class()
         new_character.random_deity()
 
         new_character.display_character()
+
         input("Press 'ENTER' to quit")
         quit_prompt()
         break
 
     elif answer == "2":
+        new_character = Character()
+
         while sub_main:
             print("\nFor the following options please respond with [Yes/No]\n")
 
@@ -292,15 +295,18 @@ while main:
                             if new_character.race in race:
                                 for clan in clans:
                                     print(f"\t-{clan}")
+
                         clan = input(
                             "\nPlease enter the name of the "
                             "clan you would like to choose:\n"
                         ).strip()
 
                         new_character.clan = clan
+
                         print(f"\nYou chose {new_character.clan} "
                               f"from {new_character.race}\n"
                               )
+
                         race_clan_deactivation()
 
                     elif answer == "quit":
@@ -350,10 +356,12 @@ while main:
                             new_character.race = "Viera"
 
                         new_character.random_race()
+
                         print(
                             f"You chose {new_character.race} and were "
                             "given one of their clans at random.\n"
                               )
+
                         race_clan_deactivation()
 
                     elif answer == "no":
@@ -406,11 +414,14 @@ while main:
                             "\nPlease enter the name of the "
                             "clan you would like to choose:\n"
                         ).strip()
+
                         new_character.clan = clan
+
                         print(
                             f"\nYou chose {new_character.clan} from "
                             f"the {new_character.race} race.\n"
                         )
+
                         race_clan_deactivation()
 
                 elif answer == "quit":
@@ -426,8 +437,11 @@ while main:
                                ).strip().lower()
 
                 if gender == "yes":
+
                     new_character.random_gender()
+
                     print("\nGender has been randomized!\n")
+
                     gender_selection_deactivation()
 
                 elif gender == "no":
@@ -438,8 +452,11 @@ while main:
 
                     print("\n")
                     gender = input("Option: ").strip().title()
+
                     new_character.gender = gender
+
                     print(f"You chose {new_character.gender}.")
+
                     gender_selection_deactivation()
 
                 elif gender == "quit":
@@ -460,10 +477,13 @@ while main:
                         ).strip().lower()
 
                     if specialization == "yes":
+
                         new_character.random_starting_class()
+
                         print(
                             "\nYour class and specialization has been "
                             "randomized.\n")
+
                         class_specialization_deactivation()
 
                     elif specialization == "no":
@@ -477,8 +497,11 @@ while main:
                         print(
                             "\nYour starting class has been randomized.\n"
                               )
+
                         new_character.specialization = specialization
+
                         new_character.random_starting_class()
+
                         class_specialization_deactivation()
 
                 elif starting_class == "no":
@@ -492,9 +515,13 @@ while main:
 
                     print("\n")
                     starting_class = input("Option: ").strip().capitalize()
+
                     new_character.starting_class = starting_class
+
                     print(f"\nYou chose {new_character.starting_class}\n")
+
                     new_character.random_starting_class()
+
                     class_specialization_deactivation()
 
                 elif starting_class == "quit":
@@ -509,8 +536,11 @@ while main:
                               ).strip().lower()
 
                 if deity == "yes":
+
                     new_character.random_deity()
+
                     print("\nYour deity has been randomized!\n")
+
                     deity_selection_deactivation()
 
                 elif deity == "no":
@@ -521,8 +551,11 @@ while main:
 
                     print("\n")
                     deity = input("Option: ").strip().capitalize()
+
                     new_character.deity = deity
+
                     print(f"You chose {new_character.deity}")
+
                     deity_selection_deactivation()
 
                 elif deity == "quit":
@@ -537,7 +570,9 @@ while main:
                     "You have chosen all the options!\n"
                     "Here is your randomized character:\n"
                 )
+
                 new_character.display_character()
+
                 input("Press 'ENTER' to quit")
                 quit_prompt()
                 break

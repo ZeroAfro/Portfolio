@@ -1,6 +1,7 @@
 """
 A simple death counter that can track and reset your deaths in video games
 """
+# TODO: Add better file handling
 
 import tkinter as tk
 
@@ -14,6 +15,7 @@ def reset_count():
 
     global death_count
     death_count = 0
+
     with open("counter.txt", "r+") as file:
         file.truncate()
         file.write("0")
@@ -24,6 +26,7 @@ def increase_count():
     """Incraments death counter"""
 
     global death_count
+
     with open("counter.txt", "r+") as file:
         death_count += 1
         count_display.config(text=f"{death_count}", font=("Helvetica", 25))
@@ -49,6 +52,7 @@ count_button.config(
     font=("Helvetica", 12, "bold"),
     command=increase_count,
 )
+
 count_label.config(
     bg="grey", fg="yellow", text="Deaths:", font=("Helvetica", 25, "bold")
 )
@@ -60,6 +64,7 @@ count_display.config(
     fg="yellow",
     relief=tk.SUNKEN,
 )
+
 reset_button.config(
     bg="#999999",
     fg="black",
