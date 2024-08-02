@@ -8,7 +8,9 @@ def main():
     """Main function, sets path and checks for errors and if path exists"""
 
     path = Path("switch_game_list.json")
+
     if path.exists():
+
         if path.stat().st_size > 0:
             try:
                 contents = path.read_text()
@@ -54,6 +56,8 @@ def main_error_handling(path):
         print(f"Please check the file {path} for any errors such as invalid "
               "JSON strings.")
         add_line_break()
+        input("Press 'ENTER' to exit.")
+
         quit()
 
     else:
@@ -96,6 +100,7 @@ if __name__ == "__main__":
                       f"[{path}]"
                       "\nPlease check your user/folder permissions.")
                 add_line_break()
+                input("Press 'ENTER' to exit.")
                 break
 
         elif switch_title.lower() == "v":
@@ -117,6 +122,7 @@ if __name__ == "__main__":
                 print(f"You do not have permission to load the file [{path}]\n"
                       "Please check your user/folder permissions.")
                 add_line_break()
+                input("Press 'ENTER' to exit.")
                 break
 
             if switch_title in titles or switch_title in saved_titles:
