@@ -8,7 +8,6 @@ Welcome to my Python Portfolio! This repository showcases various Python project
 - **General Python Projects**: This folder includes a variety of Python projects that span different domains and use cases.
 - **Tkinter Projects**: This folder contains projects that utilize the Tkinter library for creating graphical user interfaces (GUIs).
 
-
 #### Data Visualization Projects
 
 1. **Dice Rolls**: Visualises dice rolls with the ability to roll multiple dice of various sides.
