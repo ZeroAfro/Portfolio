@@ -42,9 +42,8 @@ if __name__ == "__main__":
 
         elif switch_title.lower() == "v":
             try:
-                saved_titles = json.loads(path.read_text())
                 add_line_break()
-                for title in saved_titles:
+                for title in titles:
                     print(f"\t{title}")
                 add_line_break()
             except (json.JSONDecodeError, IOError):
@@ -57,4 +56,13 @@ if __name__ == "__main__":
             add_line_break()
 
         else:
-            titles.append(switch_title)
+            saved_titles = json.loads(path.read_text())
+
+            if switch_title in titles or switch_title in saved_titles:
+                add_line_break()
+                print("That title is already in your list, "
+                      "please check and try again.")
+                add_line_break()
+
+            else:
+                titles.append(switch_title)
