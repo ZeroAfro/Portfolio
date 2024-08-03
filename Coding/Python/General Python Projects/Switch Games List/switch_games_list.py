@@ -35,7 +35,7 @@ def main():
 
 
 def main_error_handling(path):
-    """Handles the majority of the error checking for main function"""
+    """Handles the majority of the error checking for the main function"""
 
     add_line_break()
     print(f"Detected a problem with trying to read the file: [{path}].")
@@ -69,7 +69,7 @@ def main_error_handling(path):
 
 
 def add_line_break():
-    """Adds spacing for better formatting"""
+    """Adds new line for better formatting and readability"""
 
     print("\n")
 
