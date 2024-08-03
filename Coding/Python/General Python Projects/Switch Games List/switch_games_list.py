@@ -106,7 +106,7 @@ if __name__ == "__main__":
                 break
 
         elif switch_title.lower() == "v":
-            sorted_titles = sorted(titles)
+            sorted_titles = sorted(titles, key=str.lower)
             add_line_break()
             for title in sorted_titles:
                 print(f"\t{title}")
