@@ -1,4 +1,4 @@
-"""Tracks and Sorts Switch Games to a list in JSON format"""
+"""Tracks and Sorts Switch Games to a JSON file as a formated list"""
 
 from pathlib import Path
 import json
@@ -91,6 +91,8 @@ if __name__ == "__main__":
         if switch_title.lower() == "q":
             titles.sort()
             try:
+                #  Indents the list for better readability and deals with
+                #  special ascii characters
                 path.write_text(json.dumps(titles, ensure_ascii=False,
                                            indent=4))
                 break
@@ -104,8 +106,9 @@ if __name__ == "__main__":
                 break
 
         elif switch_title.lower() == "v":
+            sorted_titles = sorted(titles)
             add_line_break()
-            for title in titles:
+            for title in sorted_titles:
                 print(f"\t{title}")
             add_line_break()
 
