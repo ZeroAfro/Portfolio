@@ -7,25 +7,13 @@ and lets you randomize them in any combination you want
 
 import random
 
-
-def quit_prompt():
-    """Ends the program by deactivating all loops and prints goodbye message"""
-
-    global main
-    global sub_main
-    global gender_selection
-    global class_specialization_selection
-    global deity_selection
-    global character_description
-
-    print("\nGoodbye!\n")
-
-    main = False
-    sub_main = False
-    gender_selection = False
-    class_specialization_selection = False
-    deity_selection = False
-    character_description = False
+main = True
+sub_main = True
+race_clan_selection = True
+gender_selection = False
+class_specialization_selection = False
+deity_selection = False
+character_description = False
 
 
 def error_prompt():
@@ -226,14 +214,6 @@ race_keys = list(races.keys())
 specializations_key = list(specializations.keys())
 clans = list(races.values())
 
-main = True
-sub_main = True
-race_clan_selection = True
-gender_selection = False
-class_specialization_selection = False
-deity_selection = False
-character_description = False
-
 print(
     "Welcome to the FFXIV Character Creator Randomizer!\n\n"
     "Please select as many or as little options as you wish.\n"
@@ -261,8 +241,7 @@ while main:
         new_character.display_character()
 
         input("Press 'ENTER' to quit")
-        quit_prompt()
-        break
+        quit()
 
     elif answer == "2":
         new_character = Character()
@@ -310,8 +289,7 @@ while main:
                         race_clan_deactivation()
 
                     elif answer == "quit":
-                        quit_prompt()
-                        break
+                        quit()
 
                 elif answer == "no":
                     answer = input("Would you like to randomize a clan?: "
@@ -425,8 +403,7 @@ while main:
                         race_clan_deactivation()
 
                 elif answer == "quit":
-                    quit_prompt()
-                    break
+                    quit()
 
                 else:
                     error_prompt()
@@ -460,8 +437,7 @@ while main:
                     gender_selection_deactivation()
 
                 elif gender == "quit":
-                    quit_prompt()
-                    break
+                    quit()
 
                 else:
                     error_prompt()
@@ -525,8 +501,7 @@ while main:
                     class_specialization_deactivation()
 
                 elif starting_class == "quit":
-                    quit_prompt()
-                    break
+                    quit()
 
                 else:
                     error_prompt()
@@ -559,8 +534,7 @@ while main:
                     deity_selection_deactivation()
 
                 elif deity == "quit":
-                    quit_prompt()
-                    break
+                    quit()
 
                 else:
                     error_prompt()
@@ -574,12 +548,10 @@ while main:
                 new_character.display_character()
 
                 input("Press 'ENTER' to quit")
-                quit_prompt()
-                break
+                quit()
 
     elif answer == "quit":
-        quit_prompt()
-        break
+        quit()
 
     else:
         error_prompt()
