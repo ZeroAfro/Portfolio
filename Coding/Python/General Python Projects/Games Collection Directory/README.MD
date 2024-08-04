@@ -6,7 +6,7 @@ This Python script helps catalog and organize your game collection. It saves the
 
 - **Game Count**: Displays how many games are in your collection.
 - **Add Games**: Add new titles to the collection.
-- **Sort Games**: View the whole sorted list or view it by format.
+- **Sort Games**: View the whole sorted list or view it by rather you own it digitally or physically (it's 'format').
 - **Save List**: Save the updated list to a JSON file.
 
 ## How It Works
