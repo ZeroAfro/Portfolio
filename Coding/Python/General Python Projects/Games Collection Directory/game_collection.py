@@ -1,6 +1,8 @@
 import json
 from pathlib import Path
 
+# TODO: Increase usability with better prompts
+
 main_menu = True
 
 
@@ -34,7 +36,7 @@ def redundancy_check(game):
 
     if game in switch_titles:
         line_break()
-        print(f"{game} already exists, please check and try again.")
+        print(f"{game} already exists.")
         return True
     return False
 
