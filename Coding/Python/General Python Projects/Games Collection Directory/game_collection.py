@@ -1,9 +1,6 @@
 import json
 from pathlib import Path
 
-# TODO: Add error checking
-# TODO: Format code better
-
 main_menu = True
 
 
