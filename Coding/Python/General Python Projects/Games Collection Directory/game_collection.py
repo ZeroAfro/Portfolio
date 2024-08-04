@@ -137,13 +137,10 @@ while main_menu:
                     add_title(game_title, new_format)
                     line_break()
                     break
-
                 elif answer.lower() == "n":
                     break
-
                 elif answer.lower() == "q":
                     break
-
                 else:
                     print("\nPlease enter a valid option of either `y` or "
                           "`n`.\n")
