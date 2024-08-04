@@ -13,8 +13,7 @@ def main():
 
         if path.stat().st_size > 0:
             try:
-                contents = path.read_text()
-                titles = json.loads(contents)
+                titles = json.loads(path.read_text())
             except (json.JSONDecodeError, IOError):
 
                 titles = main_error_handling(path)
@@ -97,11 +96,9 @@ if __name__ == "__main__":
                                            indent=4))
                 break
             except PermissionError:
-                add_line_break()
-                print("You do not have permission to save to the file: "
+                print("\nYou do not have permission to save to the file: "
                       f"[{path}]"
-                      "\nPlease check your user/folder permissions.")
-                add_line_break()
+                      "\nPlease check your user/folder permissions.\n")
                 input("Press 'ENTER' to exit.")
                 break
 
@@ -113,26 +110,21 @@ if __name__ == "__main__":
             add_line_break()
 
         elif switch_title.isdigit():
-            add_line_break()
-            print("Please enter a valid title.")
-            add_line_break()
+            print("\nPlease enter a valid title.\n")
 
         else:
             try:
                 saved_titles = json.loads(path.read_text())
             except PermissionError:
-                add_line_break()
-                print(f"You do not have permission to load the file [{path}]\n"
-                      "Please check your user/folder permissions.")
-                add_line_break()
+                print("\nYou do not have permission to load the file "
+                      f"[{path}]\n"
+                      "Please check your user/folder permissions.\n")
                 input("Press 'ENTER' to exit.")
                 break
 
             if switch_title in titles or switch_title in saved_titles:
-                add_line_break()
-                print("That title is already in your list, "
-                      "please check it and try again.")
-                add_line_break()
+                print("\nThat title is already in your list, "
+                      "please check it and try again.\n")
 
             else:
                 titles.append(switch_title)
