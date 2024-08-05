@@ -1,8 +1,6 @@
 import json
 from pathlib import Path
 
-# TODO: Increase usability with better prompts
-
 main_menu = True
 
 
@@ -19,6 +17,10 @@ def main():
                 print(f"\nDetected an error with [\033[1m{path}\033[0m], "
                       "please check for invalid formating and "
                       "user/file permissions\n")
+                quit()
+            else:
+                print("\nAn unexpected error has occured.\n")
+                input("Press 'ENTER' to exit")
                 quit()
         else:
             new_list(path)
@@ -47,10 +49,19 @@ def file_saving():
     try:
         path.write_text(json.dumps(switch_titles, indent=4, ensure_ascii=False,
                                    sort_keys=True))
-    except PermissionError:
-        print(f"\nCannot save data to [\033[1m{path}\033[0m] due to a "
-              "permissions error. Please check your user/file permissions "
-              "and try again.\n")
+    except (PermissionError, FileNotFoundError)as error:
+        if isinstance(error, PermissionError):
+            print(f"\nCannot save data to [\033[1m{path}\033[0m] due to a "
+                  "permissions error. Please check your user/file "
+                  "permissions and try again.\n")
+            quit()
+        elif isinstance(error, FileNotFoundError):
+            print(f"\n[\033[1m{path}\033[0m] was created since it could not "
+                  "be found.\n")
+        else:
+            print("\nAn unexpected error has occured.\n")
+            input("Press 'ENTER' to exit")
+            quit()
 
 
 def file_loading():
@@ -65,7 +76,14 @@ def new_list(path):
     """Overrides the file with a blank dictionary"""
 
     switch_titles = {}
-    path.write_text(json.dumps(switch_titles))
+    try:
+        path.write_text(json.dumps(switch_titles))
+    except PermissionError:
+        print(f"\nCannot save data to [\033[1m{path}\033[0m] due to a "
+              "permissions error. Please check your user/file permissions "
+              "and try again.\n")
+        input("Press 'ENTER' to exit")
+        quit()
 
 
 def add_title(game_title, game_format):
