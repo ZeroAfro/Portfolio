@@ -1,6 +1,8 @@
 import json
 from pathlib import Path
 
+# TODO: Increase usability with better prompts
+
 main_menu = True
 
 
@@ -17,6 +19,7 @@ def main():
                 print(f"\nDetected an error with [\033[1m{path}\033[0m], "
                       "please check for invalid formating and "
                       "user/file permissions\n")
+                input("Press 'ENTER' to exit")
                 quit()
             else:
                 print("\nAn unexpected error has occured.\n")
@@ -54,6 +57,7 @@ def file_saving():
             print(f"\nCannot save data to [\033[1m{path}\033[0m] due to a "
                   "permissions error. Please check your user/file "
                   "permissions and try again.\n")
+            input("Press 'ENTER' to exit")
             quit()
         elif isinstance(error, FileNotFoundError):
             print(f"\n[\033[1m{path}\033[0m] was created since it could not "
