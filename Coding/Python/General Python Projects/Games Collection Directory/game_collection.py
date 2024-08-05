@@ -16,22 +16,17 @@ def main():
             try:
                 switch_titles = json.loads(path.read_text())
             except (json.JSONDecodeError, IOError):
-                print(f"\nDetected an error with [\033[1m{path}\033[0m], "
-                      "please check for invalid formating and "
+                print(f"\nDetected an error with [{path}].\n "
+                      "Please check for invalid formating and "
                       "user/file permissions\n")
-                input("Press 'ENTER' to exit")
-                quit()
-            else:
-                print("\nAn unexpected error has occured.\n")
                 input("Press 'ENTER' to exit")
                 quit()
         else:
             new_list(path)
-            switch_titles = file_loading()
-
+            switch_titles = file_loading(path)
     else:
         new_list(path)
-        switch_titles = file_loading()
+        switch_titles = file_loading(path)
 
     return switch_titles, path
 
@@ -54,13 +49,13 @@ def file_saving():
                                    sort_keys=True))
     except (PermissionError, FileNotFoundError)as error:
         if isinstance(error, PermissionError):
-            print(f"\nCannot save data to [\033[1m{path}\033[0m] due to a "
-                  "permissions error. Please check your user/file "
+            print(f"\nCannot save data to [{path}] due to a "
+                  "permissions error.\nPlease check your user/file "
                   "permissions and try again.\n")
             input("Press 'ENTER' to exit")
             quit()
         elif isinstance(error, FileNotFoundError):
-            print(f"\n[\033[1m{path}\033[0m] was created since it could not "
+            print(f"\n[{path}] was created since it could not "
                   "be found.\n")
         else:
             print("\nAn unexpected error has occured.\n")
@@ -68,7 +63,7 @@ def file_saving():
             quit()
 
 
-def file_loading():
+def file_loading(path):
     """Loads currently saved game titles from JSON file"""
 
     switch_titles = json.loads(path.read_text())
@@ -83,8 +78,8 @@ def new_list(path):
     try:
         path.write_text(json.dumps(switch_titles))
     except PermissionError:
-        print(f"\nCannot save data to [\033[1m{path}\033[0m] due to a "
-              "permissions error. Please check your user/file permissions "
+        print(f"\nCannot save data to [{path}] due to a "
+              "permissions error.\nPlease check your user/file permissions "
               "and try again.\n")
         input("Press 'ENTER' to exit")
         quit()
@@ -102,7 +97,7 @@ def game_count():
     """Returns the number of games in the collection"""
 
     count = len(switch_titles)
-    formated_game_count = f"You currently have \033[1m{count}\033[0m games"
+    formated_game_count = f"You currently have [{count}] games"
     formated_game_count += " in your collection!"
 
     return formated_game_count
@@ -190,19 +185,18 @@ while main_menu:
             answer = input("Option: ").strip()
 
             if answer == "1":
-                switch_titles = file_loading()
+                switch_titles = file_loading(path)
                 if len(switch_titles) > 0:
                     line_break()
                     for title in switch_titles.keys():
                         print(f"{title}")
                     line_break()
                 else:
-                    print(f"\nThere are [\033[1m{len(switch_titles)}\033[0m] "
-                          "games in your collection.\n")
+                    print("\nYour collection is currently empty.\n")
                     break
 
             elif answer.lower() == "2":
-                switch_titles = file_loading()
+                switch_titles = file_loading(path)
                 if len(switch_titles) > 0:
                     search_terms = ["Physical", "Physical/Digital",
                                     "Digital/Physical"]
@@ -213,12 +207,11 @@ while main_menu:
                                 print(f"{title}")
                     line_break()
                 else:
-                    print(f"\nThere are [\033[1m{len(switch_titles)}\033[0m] "
-                          "games in your collection.\n")
+                    print("\nYour collection is currently empty.\n")
                     break
 
             elif answer.lower() == "3":
-                switch_titles = file_loading()
+                switch_titles = file_loading(path)
                 if len(switch_titles) > 0:
                     search_terms = ["Digital", "Digital/Physical",
                                     "Physical/Digital"]
@@ -228,8 +221,7 @@ while main_menu:
                             if format in search_terms:
                                 print(f"{title}")
                 else:
-                    print(f"\nThere are [\033[1m{len(switch_titles)}\033[0m] "
-                          "games in your collection.\n")
+                    print("\nYour collection is currently empty.\n")
                 break
 
             elif answer.lower() == "q":
