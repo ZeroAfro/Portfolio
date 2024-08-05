@@ -1,8 +1,6 @@
 import json
 from pathlib import Path
 
-# TODO: Increase usability with better prompts
-
 main_menu = True
 
 
@@ -16,7 +14,7 @@ def main():
             try:
                 switch_titles = json.loads(path.read_text())
             except (json.JSONDecodeError, IOError):
-                print(f"\nDetected an error with [{path}].\n "
+                print(f"\nDetected an error with [{path}].\n"
                       "Please check for invalid formating and "
                       "user/file permissions\n")
                 input("Press 'ENTER' to exit")
@@ -52,15 +50,13 @@ def file_saving():
             print(f"\nCannot save data to [{path}] due to a "
                   "permissions error.\nPlease check your user/file "
                   "permissions and try again.\n")
-            input("Press 'ENTER' to exit")
-            quit()
+            error_stall()
         elif isinstance(error, FileNotFoundError):
             print(f"\n[{path}] was created since it could not "
                   "be found.\n")
         else:
             print("\nAn unexpected error has occured.\n")
-            input("Press 'ENTER' to exit")
-            quit()
+            error_stall()
 
 
 def file_loading(path):
@@ -81,8 +77,7 @@ def new_list(path):
         print(f"\nCannot save data to [{path}] due to a "
               "permissions error.\nPlease check your user/file permissions "
               "and try again.\n")
-        input("Press 'ENTER' to exit")
-        quit()
+        error_stall()
 
 
 def add_title(game_title, game_format):
@@ -110,6 +105,15 @@ def quitting():
     quit()
 
 
+def error_stall():
+    """
+    Wait for user input to allow the error message to be read then it quits
+    """
+
+    input("Press 'ENTER' to exit")
+    quit()
+
+
 def line_break():
     """Adds a line break"""
 
@@ -119,24 +123,31 @@ def line_break():
 if __name__ == "__main__":
     switch_titles, path = main()
 
+print("\nWelcome to your Game Collection!\n")
+
 while main_menu:
-    prompt = "\nWelcome to your Game Collection!\n\n"
+
+    prompt = ("\nPlease enter the number for the option you wish to "
+              "select:\n")
+    prompt += "You can enter `q` at anytime to quit.\n\n"
     prompt += f"{game_count()}"
-    prompt += ("\n\nPlease enter the number for the option you wish to "
-               "select:\n")
-    prompt += "You can enter `q` at anytime to quit.\n"
-    prompt += ("\n[1]: Add titles to collecton\n[2]: View game "
+    prompt += ("\n\n\t[1]: Add titles to collecton\n\t[2]: View game "
                "collection\n")
     print(prompt)
 
     prompt_answer = input("Option: ").strip()
 
-    if prompt_answer == "1":
+    if prompt_answer.lower() == "q":
+        quitting()
 
+    elif prompt_answer == "1":
         while True:
-            game_title = input("\nGame Title: ")
+            game_title = input("\nGame Title: ").strip()
 
-            if redundancy_check(game_title):
+            if game_title.lower() == "q":
+                line_break()
+                break
+            elif redundancy_check(game_title):
                 answer = input("\nWould you like to add "
                                f"another format for {game_title}? (y/n):"
                                ).strip()
@@ -154,6 +165,7 @@ while main_menu:
                         )
 
                     add_title(game_title, new_format)
+                    file_saving()
                     line_break()
                     break
                 elif answer.lower() == "n":
@@ -164,27 +176,25 @@ while main_menu:
                     print("\nPlease enter a valid option of either `y` or "
                           "`n`.\n")
 
-            elif game_title.lower() == "q":
-                break
-
-            game_format = input("Game Format: ").title()
+            game_format = input("Game Format: ").strip().title()
 
             if game_format.lower() == "q":
+                line_break()
                 break
-
-            add_title(game_title, game_format)
-            print(f"\n{game_count()}\n")
+            elif game_title and game_format:
+                add_title(game_title, game_format)
+                file_saving()
 
     elif prompt_answer == "2":
         while True:
             prompt = ("\nPlease enter the number for the type of game format "
                       "you wish to view:\n")
-            prompt += "\n[1]: All\n[2]: Physical\n[3]: Digital\n"
+            prompt += "\n\t[1]: All\n\t[2]: Physical\n\t[3]: Digital\n"
             print(prompt)
 
             answer = input("Option: ").strip()
 
-            if answer == "1":
+            if answer.lower() == "1":
                 switch_titles = file_loading(path)
                 if len(switch_titles) > 0:
                     line_break()
@@ -192,8 +202,8 @@ while main_menu:
                         print(f"{title}")
                     line_break()
                 else:
-                    print("\nYour collection is currently empty.\n")
-                    break
+                    line_break()
+                    print("\n[Your collection is currently empty.]\n")
 
             elif answer.lower() == "2":
                 switch_titles = file_loading(path)
@@ -207,8 +217,8 @@ while main_menu:
                                 print(f"{title}")
                     line_break()
                 else:
-                    print("\nYour collection is currently empty.\n")
-                    break
+                    line_break()
+                    print("\n[Your collection is currently empty.]\n")
 
             elif answer.lower() == "3":
                 switch_titles = file_loading(path)
@@ -220,9 +230,10 @@ while main_menu:
                         for format in tags.values():
                             if format in search_terms:
                                 print(f"{title}")
+                    line_break()
                 else:
-                    print("\nYour collection is currently empty.\n")
-                break
+                    line_break()
+                    print("\n[Your collection is currently empty.]\n")
 
             elif answer.lower() == "q":
                 break
@@ -230,8 +241,5 @@ while main_menu:
             else:
                 print("\nPlease enter a valid option of either "
                       "`1`, `2`, or '3'.\n")
-
-    elif prompt_answer.lower() == "q":
-        quitting()
     else:
         print("\nPlease enter a valid option of either `1` or `2`.\n")
