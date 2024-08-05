@@ -1,7 +1,10 @@
 import json
 from pathlib import Path
 
+# TODO: Add seperate file for just functions
+
 main_menu = True
+format_options = ["Physical", "Digital"]
 
 
 def main():
@@ -92,7 +95,7 @@ def game_count():
     """Returns the number of games in the collection"""
 
     count = len(switch_titles)
-    formated_game_count = f"You currently have [{count}] games"
+    formated_game_count = f"You currently have a total of [{count}] games"
     formated_game_count += " in your collection!"
 
     return formated_game_count
@@ -127,10 +130,10 @@ print("\nWelcome to your Game Collection!\n")
 
 while main_menu:
 
-    prompt = ("\nPlease enter the number for the option you wish to "
-              "select:\n")
-    prompt += "You can enter `q` at anytime to quit.\n\n"
-    prompt += f"{game_count()}"
+    prompt = f"{game_count()}\n"
+    prompt += ("\nPlease enter the number for the option you wish to "
+               "select:\n")
+    prompt += "You can enter `q` at anytime to quit.\n"
     prompt += ("\n\n\t[1]: Add titles to collecton\n\t[2]: View game "
                "collection\n")
     print(prompt)
@@ -146,44 +149,75 @@ while main_menu:
 
             if game_title.lower() == "q":
                 line_break()
+                line_break()
                 break
             elif redundancy_check(game_title):
-                answer = input("\nWould you like to add "
-                               f"another format for {game_title}? (y/n):"
+                answer = input("\n\nWould you like to change the format for: "
+                               f"{game_title}? (y/n): "
                                ).strip()
+                if answer.lower() == "q":
+                    line_break()
+                    line_break()
+                    break
+                elif answer.lower() == "y":
+                    print("Please enter one of the following options:\n"
+                          "\n\t[1]: Both\n\t[2]: Physical\n\t[3]: Digital\n")
 
-                if answer.lower() == "y":
-                    print
-                    game_format = input("Game format: ").title()
+                    game_format = input("Game format: ").strip().title()
 
-                    existing_game_format = (
-                        switch_titles[game_title].get("Format", "")
-                        )
-
-                    new_format = (
-                        f"{existing_game_format}/{game_format}"
-                        )
+                    if game_format.lower() == "q":
+                        line_break()
+                        line_break()
+                        break
+                    elif game_format == "1":
+                        new_format = "Physical/Digital"
+                    elif game_format == "2":
+                        new_format = "Physical"
+                    elif game_format == "3":
+                        new_format = "Digital"
+                    else:
+                        print("\nPlease enter a valid option of either "
+                              "`1`, `2`, or '3'.\n")
 
                     add_title(game_title, new_format)
                     file_saving()
                     line_break()
                     break
                 elif answer.lower() == "n":
-                    break
-                elif answer.lower() == "q":
+                    line_break()
+                    line_break()
                     break
                 else:
                     print("\nPlease enter a valid option of either `y` or "
                           "`n`.\n")
 
+            print(
+                f"\n\nIn which format do you own {game_title}?\n\n"
+                "Please enter one of the following options:\n"
+                "\n\t[1]: Both\n\t[2]: Physical\n\t[3]: Digital\n"
+                )
+
             game_format = input("Game Format: ").strip().title()
 
             if game_format.lower() == "q":
                 line_break()
+                line_break()
                 break
-            elif game_title and game_format:
+            elif game_format == "1":
+                game_format = "Physical/Digital"
                 add_title(game_title, game_format)
                 file_saving()
+            elif game_format == "2":
+                game_format = "Physical"
+                add_title(game_title, game_format)
+                file_saving()
+            elif game_format == "3":
+                game_format = "Digital"
+                add_title(game_title, game_format)
+                file_saving()
+            else:
+                print("\nPlease enter a valid option of either "
+                      "`1`, `2`, or '3'.\n")
 
     elif prompt_answer == "2":
         while True:
@@ -194,12 +228,19 @@ while main_menu:
 
             answer = input("Option: ").strip()
 
-            if answer.lower() == "1":
+            if answer.lower() == "q":
+                line_break()
+                line_break()
+                break
+            elif answer.lower() == "1":
                 switch_titles = file_loading(path)
+
                 if len(switch_titles) > 0:
                     line_break()
                     for title in switch_titles.keys():
                         print(f"{title}")
+                    line_break()
+                    print(game_count())
                     line_break()
                 else:
                     line_break()
@@ -207,14 +248,19 @@ while main_menu:
 
             elif answer.lower() == "2":
                 switch_titles = file_loading(path)
+
                 if len(switch_titles) > 0:
-                    search_terms = ["Physical", "Physical/Digital",
-                                    "Digital/Physical"]
+                    search_terms = ("Physical", "Physical/Digital")
+                    temp_list = []
                     line_break()
+
                     for title, tags in switch_titles.items():
                         for format in tags.values():
                             if format in search_terms:
                                 print(f"{title}")
+                                temp_list.append(title)
+                    line_break()
+                    print(f"You have [{len(temp_list)}] Physical games.")
                     line_break()
                 else:
                     line_break()
@@ -222,21 +268,23 @@ while main_menu:
 
             elif answer.lower() == "3":
                 switch_titles = file_loading(path)
+
                 if len(switch_titles) > 0:
-                    search_terms = ["Digital", "Digital/Physical",
-                                    "Physical/Digital"]
+                    search_terms = ("Digital", "Physical/Digital")
+                    temp_list = []
                     line_break()
+
                     for title, tags in switch_titles.items():
                         for format in tags.values():
                             if format in search_terms:
                                 print(f"{title}")
+                                temp_list.append(title)
+                    line_break()
+                    print(f"You have [{len(temp_list)}] Digital games.")
                     line_break()
                 else:
                     line_break()
                     print("\n[Your collection is currently empty.]\n")
-
-            elif answer.lower() == "q":
-                break
 
             else:
                 print("\nPlease enter a valid option of either "
