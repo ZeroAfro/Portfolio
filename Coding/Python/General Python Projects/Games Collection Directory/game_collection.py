@@ -32,12 +32,12 @@ def main():
     return switch_titles, path
 
 
-def redundancy_check(game):
+def redundancy_check(game_title):
     """Checks if the entered title has already been entered"""
 
-    if game in switch_titles:
+    if game_title in switch_titles:
         line_break()
-        print(f"{game} already exists.")
+        print(f"{game_title} already exists.")
         return True
     return False
 
