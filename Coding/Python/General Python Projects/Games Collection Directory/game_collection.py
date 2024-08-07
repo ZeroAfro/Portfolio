@@ -4,10 +4,9 @@ from pathlib import Path
 # TODO: Add seperate file for just functions
 
 main_menu = True
-format_options = ["Physical", "Digital"]
 
 
-def main():
+def main() -> tuple[dict[str, dict[str, str]], Path]:
     """Main Function"""
 
     path = Path("game_collection.json")
@@ -20,8 +19,7 @@ def main():
                 print(f"\nDetected an error with [{path}].\n"
                       "Please check for invalid formating and "
                       "user/file permissions\n")
-                input("Press 'ENTER' to exit")
-                quit()
+                error_stall()
         else:
             new_list(path)
             switch_titles = file_loading(path)
@@ -32,7 +30,10 @@ def main():
     return switch_titles, path
 
 
-def redundancy_check(game_title):
+def redundancy_check(
+        game_title: str,
+        switch_titles: dict[str, dict[str, str]]
+        ) -> bool:
     """Checks if the entered title has already been entered"""
 
     if game_title in switch_titles:
@@ -42,7 +43,7 @@ def redundancy_check(game_title):
     return False
 
 
-def file_saving():
+def file_saving(path: Path, switch_titles: dict[str, dict[str, str]]) -> None:
     """Saves current titles to JSON file"""
 
     try:
@@ -62,7 +63,7 @@ def file_saving():
             error_stall()
 
 
-def file_loading(path):
+def file_loading(path: Path) -> dict[str, dict[str, str]]:
     """Loads currently saved game titles from JSON file"""
 
     switch_titles = json.loads(path.read_text())
@@ -70,7 +71,7 @@ def file_loading(path):
     return switch_titles
 
 
-def new_list(path):
+def new_list(path: Path) -> None:
     """Overrides the file with a blank dictionary"""
 
     switch_titles = {}
@@ -83,7 +84,11 @@ def new_list(path):
         error_stall()
 
 
-def add_title(game_title, game_format):
+def add_title(
+        game_title: str,
+        game_format: str,
+        switch_titles: dict[str, dict[str, str]]
+        ) -> None:
     """Adds title into dictionary"""
 
     switch_titles[game_title] = {
@@ -91,24 +96,25 @@ def add_title(game_title, game_format):
         }
 
 
-def game_count():
+def game_count(switch_titles: dict[str, dict[str, str]]) -> str:
+    # Add abiltiy to handle the digital and physical only count count
     """Returns the number of games in the collection"""
 
     count = len(switch_titles)
-    formated_game_count = f"You currently have a total of [{count}] games"
-    formated_game_count += " in your collection!"
+    formated_game_count = (f"You currently have a total of [{count}] games in "
+                           "your collection!")
 
     return formated_game_count
 
 
-def quitting():
+def quitting(path: Path, switch_titles: dict[str, dict[str, str]]) -> None:
     """Saves the currently saved titles and quits"""
 
-    file_saving()
+    file_saving(path, switch_titles)
     quit()
 
 
-def error_stall():
+def error_stall() -> None:
     """
     Wait for user input to allow the error message to be read then it quits
     """
@@ -117,7 +123,7 @@ def error_stall():
     quit()
 
 
-def line_break():
+def line_break() -> None:
     """Adds a line break"""
 
     print("\n")
@@ -126,11 +132,12 @@ def line_break():
 if __name__ == "__main__":
     switch_titles, path = main()
 
+# add this to loop
 print("\nWelcome to your Game Collection!\n")
 
 while main_menu:
 
-    prompt = f"{game_count()}\n"
+    prompt = f"{game_count(switch_titles)}\n"
     prompt += ("\nPlease enter the number for the option you wish to "
                "select:\n")
     prompt += "You can enter `q` at anytime to quit.\n"
@@ -141,7 +148,7 @@ while main_menu:
     prompt_answer = input("Option: ").strip()
 
     if prompt_answer.lower() == "q":
-        quitting()
+        quitting(path, switch_titles)
 
     elif prompt_answer == "1":
         while True:
@@ -151,7 +158,7 @@ while main_menu:
                 line_break()
                 line_break()
                 break
-            elif redundancy_check(game_title):
+            elif redundancy_check(game_title, switch_titles):
                 answer = input("\n\nWould you like to change the format for: "
                                f"{game_title}? (y/n): "
                                ).strip()
@@ -179,8 +186,8 @@ while main_menu:
                         print("\nPlease enter a valid option of either "
                               "`1`, `2`, or '3'.\n")
 
-                    add_title(game_title, new_format)
-                    file_saving()
+                    add_title(game_title, new_format, switch_titles)
+                    file_saving(path, switch_titles)
                     line_break()
                     break
                 elif answer.lower() == "n":
@@ -205,16 +212,16 @@ while main_menu:
                 break
             elif game_format == "1":
                 game_format = "Physical/Digital"
-                add_title(game_title, game_format)
-                file_saving()
+                add_title(game_title, game_format, switch_titles)
+                file_saving(path, switch_titles)
             elif game_format == "2":
                 game_format = "Physical"
-                add_title(game_title, game_format)
-                file_saving()
+                add_title(game_title, game_format, switch_titles)
+                file_saving(path, switch_titles)
             elif game_format == "3":
                 game_format = "Digital"
-                add_title(game_title, game_format)
-                file_saving()
+                add_title(game_title, game_format, switch_titles)
+                file_saving(path, switch_titles)
             else:
                 print("\nPlease enter a valid option of either "
                       "`1`, `2`, or '3'.\n")
@@ -240,7 +247,7 @@ while main_menu:
                     for title in switch_titles.keys():
                         print(f"{title}")
                     line_break()
-                    print(game_count())
+                    print(game_count(switch_titles))
                     line_break()
                 else:
                     line_break()
