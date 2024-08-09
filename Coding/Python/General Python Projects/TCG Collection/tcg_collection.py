@@ -3,6 +3,7 @@
 import json
 from pathlib import Path
 
+# TODO: Add error handling for jsondecone/io/permissions
 
 class Card:
     """Models a TCG card"""
