@@ -21,7 +21,8 @@ Welcome to my Python Portfolio! This repository showcases various Python project
 4. **Movie Directory**: A script that holds movies based on attributes in a list.
 5. **Numbered List Generator**: A script that takes user input and generates a text file with a formated numbered list.
 6. **Reading Tracker**: A script that allows the user to record various titles in a text file.
-7. **Wage Calculator**: A script that calculates regular wages and overtime wages based on US standards.
+7. **TCG Collection**: A script that catalogs how many diffrent cards of various rarities you own.
+8. **Wage Calculator**: A script that calculates regular wages and overtime wages based on US standards.
 
 #### Tkinter Projects
 
