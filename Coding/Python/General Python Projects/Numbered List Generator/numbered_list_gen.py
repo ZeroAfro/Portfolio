@@ -1,29 +1,37 @@
-"""Generates a empty numbered and formated list based on user input"""
+"""Generates a numbered and formated empty list"""
 
-# TODO: Figure out why I have to use os.chdir to ensure file creation
+path = "numbered_list.txt"
 
-import os
-from time import sleep
+print(
+    "\nWelcome to the numbered list generator\n\n"
+    "Please enter how long you wish the list to be or "
+    "enter 'q' to quit.\n\n"
+    )
 
-os.chdir(os.path.dirname(os.path.abspath(__file__)))
 
 while True:
-    try:
-        list_length = int(input("Enter the length of the numbered list: "))
-        break
-    except ValueError:
-        print("Please enter a valid number.")
+    list_length = input("List Length: ")
 
-with open("numbered_list.txt", "w") as file:
+    if list_length.lower() == "q":
+        quit()
+    else:
+        try:
+            list_length = int(list_length)
+            break
+        except ValueError:
+            print("\nPlease enter either whole number or 'q'.\n")
 
-    i = 0
 
-    while i < list_length:
-        i += 1
-        file.write(f"{i}. \n")
+open(path, "w").close()
 
-delay_time = 1
+with open(path, "a") as file:
 
-print(f"Closing in {delay_time} seconds...")
+    for n in range(1, list_length + 1):
 
-sleep(delay_time)
+        formated_list = f"{n}: \n"
+
+        if n == list_length:
+            formated_list = f"{n}: "
+            file.write(formated_list)
+        else:
+            file.write(formated_list)
