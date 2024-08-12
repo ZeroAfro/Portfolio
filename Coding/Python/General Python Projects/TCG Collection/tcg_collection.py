@@ -106,7 +106,8 @@ while True:
     prompt_response = input("Response: ")
 
     if prompt_response.lower() == "q":
-        quit()
+        path.write_text(json.dumps(new_card.cards, indent=4))
+        raise SystemExit
     elif prompt_response == "1":
 
         while True:
@@ -183,8 +184,9 @@ while True:
 
             else:
                 print("\n\nPlease enter a valid rarity tag.\n\n")
-                input("Press 'ENTER' to continue")
+                input("Press 'ENTER' to continue\n\n")
 
     else:
         print("\n\nPlease enter a valid option of either '1' or '2'.\n\n")
-        input("Press 'ENTER' to continue")
+        input("Press 'ENTER' to continue\n\n")
+
