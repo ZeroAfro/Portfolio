@@ -104,7 +104,8 @@ while True:
     prompt_response = input("Response: ")
 
     if prompt_response.lower() == "q":
-        quit()
+        path.write_text(json.dumps(new_card.cards, indent=4))
+        exit()
     elif prompt_response == "1":
 
         while True:
