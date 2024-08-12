@@ -5,6 +5,7 @@ from pathlib import Path
 
 # TODO: Add error handling for jsondecone/io/permissions
 
+
 class Card:
     """Models a TCG card"""
 
@@ -32,6 +33,8 @@ class Card:
         formated_rarities = "+---------------------+\n"
         formated_rarities += "|    Rarity Count     |\n"
         formated_rarities += "+---------------------+\n"
+        formated_rarities += f"|   Total Cards: {self.card_total():<5}|\n"
+        formated_rarities += "|                     |\n"
 
         for rarity, count in self.cards.items():
 
@@ -45,7 +48,6 @@ class Card:
                 formated_rarities += f"| {rarity}: {count:<18}|\n"
 
         formated_rarities += "+---------------------+\n"
-
         return formated_rarities
 
     def update_count(self, rarity: str, new_value: int) -> None:
