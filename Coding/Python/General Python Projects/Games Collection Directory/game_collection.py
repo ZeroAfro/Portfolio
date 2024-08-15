@@ -16,9 +16,11 @@ def main() -> tuple[dict[str, dict[str, str]], Path]:
             try:
                 switch_titles = json.loads(path.read_text())
             except (json.JSONDecodeError, IOError):
-                print(f"\nDetected an error with [{path}].\n"
-                      "Please check for invalid formating and "
-                      "user/file permissions\n")
+                print(
+                    f"\nDetected an error with [{path}].\n"
+                    "Please check for invalid formating and "
+                    "user/file permissions\n"
+                    )
                 error_stall()
         else:
             new_list(path)
@@ -51,9 +53,11 @@ def file_saving(path: Path, switch_titles: dict[str, dict[str, str]]) -> None:
                                    sort_keys=True))
     except (PermissionError, FileNotFoundError)as error:
         if isinstance(error, PermissionError):
-            print(f"\nCannot save data to [{path}] due to a "
-                  "permissions error.\nPlease check your user/file "
-                  "permissions and try again.\n")
+            print(
+                f"\nCannot save data to [{path}] due to a "
+                "permissions error.\nPlease check your user/file "
+                "permissions and try again.\n"
+                )
             error_stall()
         elif isinstance(error, FileNotFoundError):
             print(f"\n[{path}] was created since it could not "
@@ -78,9 +82,11 @@ def new_list(path: Path) -> None:
     try:
         path.write_text(json.dumps(switch_titles))
     except PermissionError:
-        print(f"\nCannot save data to [{path}] due to a "
-              "permissions error.\nPlease check your user/file permissions "
-              "and try again.\n")
+        print(
+            f"\nCannot save data to [{path}] due to a "
+            "permissions error.\nPlease check your user/file permissions "
+            "and try again.\n"
+              )
         error_stall()
 
 
@@ -101,8 +107,10 @@ def game_count(switch_titles: dict[str, dict[str, str]]) -> str:
     """Returns the number of games in the collection"""
 
     count = len(switch_titles)
-    formated_game_count = (f"You currently have a total of [{count}] games in "
-                           "your collection!")
+    formated_game_count = (
+        f"You currently have a total of [{count}] games in "
+        "your collection!"
+                           )
 
     return formated_game_count
 
@@ -138,11 +146,15 @@ print("\nWelcome to your Game Collection!\n")
 while main_menu:
 
     prompt = f"{game_count(switch_titles)}\n"
-    prompt += ("\nPlease enter the number for the option you wish to "
-               "select:\n")
+    prompt += (
+        "\nPlease enter the number for the option you wish to "
+        "select:\n"
+        )
     prompt += "You can enter `q` at anytime to quit.\n"
-    prompt += ("\n\n\t[1]: Add titles to collecton\n\t[2]: View game "
-               "collection\n")
+    prompt += (
+        "\n\n\t[1]: Add titles to collecton\n\t[2]: View game "
+        "collection\n"
+        )
     print(prompt)
 
     prompt_answer = input("Option: ").strip()
@@ -159,16 +171,19 @@ while main_menu:
                 line_break()
                 break
             elif redundancy_check(game_title, switch_titles):
-                answer = input("\n\nWould you like to change the format for: "
-                               f"{game_title}? (y/n): "
-                               ).strip()
+                answer = input(
+                    "\n\nWould you like to change the format for: "
+                    f"{game_title}? (y/n): "
+                    ).strip()
                 if answer.lower() == "q":
                     line_break()
                     line_break()
                     break
                 elif answer.lower() == "y":
-                    print("Please enter one of the following options:\n"
-                          "\n\t[1]: Both\n\t[2]: Physical\n\t[3]: Digital\n")
+                    print(
+                        "Please enter one of the following options:\n"
+                        "\n\t[1]: Both\n\t[2]: Physical\n\t[3]: Digital\n"
+                        )
 
                     game_format = input("Game format: ").strip().title()
 
@@ -183,8 +198,10 @@ while main_menu:
                     elif game_format == "3":
                         new_format = "Digital"
                     else:
-                        print("\nPlease enter a valid option of either "
-                              "`1`, `2`, or '3'.\n")
+                        print(
+                            "\nPlease enter a valid option of either "
+                            "`1`, `2`, or '3'.\n"
+                            )
 
                     add_title(game_title, new_format, switch_titles)
                     file_saving(path, switch_titles)
@@ -195,8 +212,10 @@ while main_menu:
                     line_break()
                     break
                 else:
-                    print("\nPlease enter a valid option of either `y` or "
-                          "`n`.\n")
+                    print(
+                        "\nPlease enter a valid option of either `y` or "
+                        "`n`.\n"
+                        )
 
             print(
                 f"\n\nIn which format do you own {game_title}?\n\n"
@@ -223,13 +242,17 @@ while main_menu:
                 add_title(game_title, game_format, switch_titles)
                 file_saving(path, switch_titles)
             else:
-                print("\nPlease enter a valid option of either "
-                      "`1`, `2`, or '3'.\n")
+                print(
+                    "\nPlease enter a valid option of either "
+                    "`1`, `2`, or '3'.\n"
+                    )
 
     elif prompt_answer == "2":
         while True:
-            prompt = ("\nPlease enter the number for the type of game format "
-                      "you wish to view:\n")
+            prompt = (
+                "\nPlease enter the number for the type of game format "
+                "you wish to view:\n"
+                )
             prompt += "\n\t[1]: All\n\t[2]: Physical\n\t[3]: Digital\n"
             print(prompt)
 
@@ -294,7 +317,9 @@ while main_menu:
                     print("\n[Your collection is currently empty.]\n")
 
             else:
-                print("\nPlease enter a valid option of either "
-                      "`1`, `2`, or '3'.\n")
+                print(
+                    "\nPlease enter a valid option of either "
+                    "`1`, `2`, or '3'.\n"
+                    )
     else:
         print("\nPlease enter a valid option of either `1` or `2`.\n")

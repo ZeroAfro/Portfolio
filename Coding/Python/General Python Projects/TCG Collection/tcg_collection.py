@@ -189,4 +189,3 @@ while True:
     else:
         print("\n\nPlease enter a valid option of either '1' or '2'.\n\n")
         input("Press 'ENTER' to continue\n\n")
-
