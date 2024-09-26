@@ -111,6 +111,11 @@ while True:
             print("\nSequance code has been reset! Try again.\n")
             time.sleep(1)
 
+        elif hidden_items is True and visible_items is True:
+            item_attribute_reset(items)
+            print("\nSequance code has been reset! Try again.\n")
+            time.sleep(1)
+
     elif user_input == 'q'.strip().lower():
         break
     else:
