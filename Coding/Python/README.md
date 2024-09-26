@@ -17,12 +17,13 @@ Welcome to my Python Portfolio! This repository showcases various Python project
 
 1. **Dice Roller**: A script to simulate a single or multiple dice rolls of various size of dice.
 2. **FFXIV Character Creation Randomizer**: A script to randomize various aspects of character creation for Final Fantasy XIV.
-3. **Game Collection Directory**: A script that takes in game titles and their format ans saves them into a formated JSON file
-4. **Movie Directory**: A script that holds movies based on attributes in a list.
-5. **Numbered List Generator**: A script that takes user input and generates a text file with a formated numbered list.
-6. **Reading Tracker**: A script that allows the user to record various titles in a text file.
-7. **TCG Collection**: A script that catalogs how many diffrent cards of various rarities you own.
-8. **Wage Calculator**: A script that calculates regular wages and overtime wages based on US standards.
+3. **File and Folder Hider**: A Python script that allows users to hide and un-hide specific files or folders by toggling their system attributes based on a password.
+4. **Game Collection Directory**: A script that takes in game titles and their format ans saves them into a formated JSON file
+5. **Movie Directory**: A script that holds movies based on attributes in a list.
+6. **Numbered List Generator**: A script that takes user input and generates a text file with a formated numbered list.
+7. **Reading Tracker**: A script that allows the user to record various titles in a text file.
+8. **TCG Collection**: A script that catalogs how many diffrent cards of various rarities you own.
+9. **Wage Calculator**: A script that calculates regular wages and overtime wages based on US standards.
 
 #### Tkinter Projects
 
