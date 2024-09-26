@@ -17,7 +17,7 @@ item_you_want_to_hide: str = Path("")
 password: str = "placeholderpassword"
 
 # Enter the names of the above variables and
-# seperate with ', ' [folder1, file1, folder2]
+# seperate with ', ' (folder1, file1, folder2)
 items = ()
 
 
