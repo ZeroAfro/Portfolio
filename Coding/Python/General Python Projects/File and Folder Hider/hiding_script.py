@@ -26,6 +26,7 @@ def hide_item(item: str) -> None:
 
     if os.path.exists(item):
         os.system(f'attrib +h +s "{item}"')
+
     else:
         pass
 
