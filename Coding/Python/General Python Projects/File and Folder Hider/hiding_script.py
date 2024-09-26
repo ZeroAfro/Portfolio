@@ -24,13 +24,20 @@ items = ()
 def hide_item(item: str) -> None:
     """Hides specified item by changing its attributes"""
 
-    os.system(f'attrib +h +s "{item: str}"')
+    if os.path.exists(item):
+        os.system(f'attrib +h +s "{item}"')
+    else:
+        pass
 
 
 def un_hide_item(item: str) -> None:
     """Un-hides specified item by changing its attributes"""
 
-    os.system(f'attrib -h -s "{item: str}"')
+    if os.path.exists(item):
+        os.system(f'attrib -h -s "{item}"')
+
+    else:
+        pass
 
 
 def item_attribute_reset(items: tuple) -> None:
@@ -40,19 +47,17 @@ def item_attribute_reset(items: tuple) -> None:
         hide_item(item)
 
 
-def check_item_attributes(item: str) -> None:
+def check_item_attributes(items: tuple) -> None:
     """Check the attributes for the folder"""
 
     global hidden_items
     global visible_items
 
-    # Takes the total number of folders being modified and compares it to the
-    # number of hidden or not hidden folders
-    total_items: int = len(items)
     num_hidden_items: int = 0
     num_visible_items: int = 0
     for item in items:
-        item_path_wide: ctypes.c_wchar_p = ctypes.c_wchar_p(item)
+        item_path_str = str(item)
+        item_path_wide: ctypes.c_wchar_p = ctypes.c_wchar_p(item_path_str)
         attrs: int = ctypes.windll.kernel32.GetFileAttributesW(item_path_wide)
 
         if attrs == -1:
@@ -66,54 +71,59 @@ def check_item_attributes(item: str) -> None:
 
             num_visible_items += 1
 
-    if total_items == num_hidden_items and total_items != num_visible_items:
-        hidden_items: bool = True
-        visible_items: bool = False
+    if isinstance(num_hidden_items, int):
+        if num_hidden_items == 0:
+            hidden_items = False
 
-    elif (total_items == num_visible_items and
-          total_items != num_hidden_items):
+        elif num_hidden_items > 0:
+            hidden_items = True
 
-        hidden_items: bool = False
-        visible_items: bool = True
+    if isinstance(num_visible_items, int):
+        if num_visible_items == 0:
+            visible_items = False
+
+        elif num_visible_items > 0:
+            visible_items = True
 
     else:
-        pass
+        item_attribute_reset(items)
 
+
+check_item_attributes(items)
+
+if hidden_items is True and visible_items is True:
+    item_attribute_reset(items)
+
+check_item_attributes(items)
 
 print("\nWelcome to the file backup script! Please enter the backup "
       "sequence code as per manual!\n")
 print("This will backup all files, please proceed with caution!!\n")
 print("Enter 'q' to exit\n\n")
 
-user_input: str = input("Sequence Code: ")
-
 while True:
+    user_input: str = input("Sequence Code: ")
+
     if user_input.strip() == password:
-        check_item_attributes(items)
 
         if hidden_items is True and visible_items is False:
             for item in items:
                 un_hide_item(item)
             print("\nSequance code accepted!\n")
-            time.sleep(2)
+            time.sleep(1)
             break
 
         elif hidden_items is False and visible_items is True:
             for item in items:
                 hide_item(item)
             print("\nSequance code accepted!\n")
-            time.sleep(2)
-            break
-
-        elif (hidden_items not in [True, False] and
-              visible_items not in [True, False]):
-            item_attribute_reset(items)
-            print("\nSequance code has been reset! Try again.\n")
             time.sleep(1)
+            break
 
     elif user_input == 'q'.strip().lower():
         break
+
     else:
         print("\nInvalid Sequance Code! Aborting Backup!\n")
-        time.sleep(2)
+        time.sleep(1)
         break
