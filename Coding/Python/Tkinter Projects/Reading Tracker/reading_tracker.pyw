@@ -67,7 +67,7 @@ def random_title():
         else:
             with open("Reading List.txt", "r") as file:
                 lines = file.readlines()
-                choice = random.choice(lines)
+                choice = random.choice(lines).strip()
                 width = len(choice) * 10
                 font = ("tahoma", 10, "bold")
                 random_title_box.config(text=choice, width=width, font=font)
