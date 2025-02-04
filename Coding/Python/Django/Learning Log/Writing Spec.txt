@@ -1,0 +1,5 @@
+This project will be a webapp called "Learning Log" that allows users to log and track the topics that they are interested in and also
+allows for entering journal entries for these topics.
+
+It will include a homepage that describes the site and will allow users to login or register. When logged in users can then create topics,
+add entries, and read and edit entries.
