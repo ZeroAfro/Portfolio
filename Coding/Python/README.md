@@ -1,10 +1,11 @@
 # Python Portfolio
 
-Welcome to my Python Portfolio! This repository showcases various Python projects I've worked on. It is organized into three main categories: `Data Visualization Projects`, `General Python Projects`, and `Tkinter Projects`.
+Welcome to my Python Portfolio! This repository showcases various Python projects I've worked on. It is organized into three main categories: `Data Visualization Projects`, `Django Projects`, `General Python Projects`, and `Tkinter Projects`.
 
 ## Project Structure
 
 - **Data Visualization Projects**: This folder includes a variety of Python projects that showcase different data visualizations.
+- **Django Projects**: This folder includes my Django based projects
 - **General Python Projects**: This folder includes a variety of Python projects that span different domains and use cases.
 - **Tkinter Projects**: This folder contains projects that utilize the Tkinter library for creating graphical user interfaces (GUIs).
 
@@ -12,6 +13,10 @@ Welcome to my Python Portfolio! This repository showcases various Python project
 
 1. **Dice Rolls**: Visualises dice rolls with the ability to roll multiple dice of various sides.
 2. **Walking Simulation**: Visualises a random walk of with various amount of steps.
+
+#### Django Projects
+
+1. **Learning Log**: **TBA**
 
 #### General Python Projects
 
