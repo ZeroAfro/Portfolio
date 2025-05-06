@@ -1,0 +1,11 @@
+Name: Learning Log
+
+Features:
+Users can register or login
+Create topics
+Create journal entries
+Edit or view existing entries
+A homepage that describes the site
+A homepage that provides login/registeration options
+
+This web app is meant to allow users to track topics they are interested in and make journal entries.
