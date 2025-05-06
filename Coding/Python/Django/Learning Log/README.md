@@ -11,7 +11,6 @@ Learning Log is a web app that lets users track topics they’re interested in a
 
 ## How It Works
 
-- **Visit the Site**: Open the homepage to learn about the app and log in or register.
 - **Create a Topic**: Add new topics to organize your learning.
 - **Add Entries**: Write journal entries under specific topics.
 - **Edit/View Entries**: Review or update your entries as needed.
