@@ -3,18 +3,30 @@
 {% block page_header %}
   <div class="p-3 mb-4 bg-light border rounded-3">
     <div class="container-fluid py-4">
-      <h1 class="display-3" style="text-align: center;">Track your learning</h1>
+      <h1 class="display-3" style="text-align: center; font-weight: bold; padding-bottom: 25px;">Knowledge Tracker</h1>
       
-      <p class="lead">Make your own Learning Log, and keep a list of the
-      topics you're learning about. Whenever you learn something new
-      about a topic, make an entry summarizing what you've learned.</p>
+      <p class="lead">
+        Welcome to my web app! It was created to help me learn a web framework while also helping me and my friends track various
+        topics easier. You can enter a topic and then add entries to that pertain to that specific topic.
+      </p>
 
-      <div style="text-align: center; padding-top: 25px;">
-        <p class="lead" style="font-size: 0.95em;">Once registered and logged in, click "Topics" in the top left to get started!</p>
-      </div>
-
+      {% if user.is_authenticated %}
+        <div style="text-align: center; padding-top: 25px;">
+          <p class="lead" style="font-size: 0.95em;">
+            To get started, click <strong>"Topics"</strong> on the top left of the app to get started!
+          </p>
+          <p class="lead" style="font-size: 0.95em;">
+            You can also come back to this page anytime, just click <strong>"Knowledge Tracker"</strong> in the top left.
+          </p>
+        </div>
+      {% endif %}
       {% if not user.is_authenticated %}
-        <div style="text-align: center;">
+      <div style="text-align: center; padding-top: 25px;">
+        <p class="lead" style="font-size: 0.95em;">
+          To use this website, start by clicking the <strong>"Register"</strong> button below or on the <strong>top right</strong> of the app to register an account.<br>
+        </p>
+      </div>
+        <div style="text-align: center; padding-top: 15px;">
           <a class="btn btn-primary btn-lg mt-1"
               href="{% url 'accounts:register' %}">Register &raquo;</a>
         </div>

@@ -1,1 +1,41 @@
 {% extends "learning_logs/base.html" %}
+<!-- Remove {% load static %} if you will not be using a picture on this page -->
+{% load static %}
+{% load django_bootstrap5 %}
+
+{% block page_header %}
+  <div class="p-3 mb-4 bg-light border rounded-3">
+    <div class="container-fluid py-1">
+      <h1 class="display-3" style="text-align: center; font-size: 40px; font-weight: bold;">
+        Welcome!
+      </h1>
+    </div>
+  </div>
+  <div class="container">
+    <div class="w-50 mx-auto p-2 mb-4 bg-light border rounded-3">
+      <h1 class="text-center fw-bold py-3 fs-3">
+        My name is ZeroAfro!
+      </h1>
+      <div class="text-center pt-2 pb-3">
+        <!-- Make sure to replace the picture name and file extension to match your picture
+         i.e., 'learning_logs/images/your_picture.jpeg'-->
+        <img
+        src="{% static 'learning_logs/images/space_red_panda.png' %}"
+        alt="Picture of a pastel red panda in a space suit floating in space"
+        class="im-fluid rounded-3"
+        style="max-width: 130px; height: auto;">
+      </div>
+      <p class="text-center px-4 px-md-5 pt-3">
+        I started learning Python around May of 2024 in order to broaden my skill set and
+        to learn how to really automate some repetitive tasks I often found myself doing.
+      </p>
+      <p class="text-center px-4 px-md-5 pt-3">
+        I'm an avid reader, whether it's digital or physical books (but let's be honest, nothing—beats the smell of a new book).
+        I also have a major soft spot for Red Pandas and I'm secretly a massive Scooby-Doo fan!
+      </p>
+      <p class="text-center px-4 px-md-5 pt-3">
+        Please enjoy my first web app, I hope it's as useful to you as it is to me!
+      </p>
+    </div>
+  </div>
+{% endblock page_header %}
