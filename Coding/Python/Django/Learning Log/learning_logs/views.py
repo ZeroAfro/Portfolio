@@ -6,6 +6,16 @@ from .models import Topic, Entry
 from .forms import TopicForm, EntryForm
 
 
+def check_topic_owner(topic, user):
+    """Checks if the topic belongs to the currently logged-in user.
+
+    Raise a Http404 error if the user doesn't own the topic.
+    """
+
+    if topic.owner != user:
+        raise Http404
+
+
 def index(request):
     """The homepage for Learning Logs"""
     return render(request, 'learning_logs/index.html')
@@ -94,11 +104,6 @@ def edit_entry(request, entry_id):
     return render(request, 'learning_logs/edit_entry.html', context)
 
 
-def check_topic_owner(topic, user):
-    """Checks if the topic belongs to the currently logged-in user.
-
-    Raise a Http404 error if the user doesn't own the topic.
-    """
-
-    if topic.owner != user:
-        raise Http404
+def about_me(request):
+    """About me page giving info on owner"""
+    return render(request, 'learning_logs/about_me.html')
