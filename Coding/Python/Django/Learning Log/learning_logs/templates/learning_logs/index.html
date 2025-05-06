@@ -3,16 +3,21 @@
 {% block page_header %}
   <div class="p-3 mb-4 bg-light border rounded-3">
     <div class="container-fluid py-4">
-      <h1 class="display-3">Track your learning.</h1>
+      <h1 class="display-3" style="text-align: center;">Track your learning</h1>
       
       <p class="lead">Make your own Learning Log, and keep a list of the
       topics you're learning about. Whenever you learn something new
       about a topic, make an entry summarizing what you've learned.</p>
-      <p class="lead" style="font-size: 0.95em;">Once you're logged in, click "Topics" in the top left to get started!</p>
+
+      <div style="text-align: center; padding-top: 25px;">
+        <p class="lead" style="font-size: 0.95em;">Once registered and logged in, click "Topics" in the top left to get started!</p>
+      </div>
 
       {% if not user.is_authenticated %}
-        <a class="btn btn-primary btn-lg mt-1"
-            href="{% url 'accounts:register' %}">Register &raquo;</a>
+        <div style="text-align: center;">
+          <a class="btn btn-primary btn-lg mt-1"
+              href="{% url 'accounts:register' %}">Register &raquo;</a>
+        </div>
 
       {% endif %}
     </div>
