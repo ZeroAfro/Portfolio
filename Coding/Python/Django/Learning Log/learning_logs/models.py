@@ -8,6 +8,9 @@ class Topic(models.Model):
     date_added = models.DateTimeField(auto_now_add=True)
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
 
+    class Meta:
+        verbose_name_plural = 'Topics'
+
     def __str__(self):
         """Return a string representation fo the model."""
         return self.text
@@ -20,7 +23,7 @@ class Entry(models.Model):
     date_added = models.DateTimeField(auto_now_add=True)
 
     class Meta:
-        verbose_name_plural = 'entries'
+        verbose_name_plural = 'Entries'
 
     def __str__(self):
         """Return a simple string representing the entry."""
