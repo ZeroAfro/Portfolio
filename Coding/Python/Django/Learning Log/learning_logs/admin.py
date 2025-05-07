@@ -9,6 +9,7 @@ class TopicAdmin(admin.ModelAdmin):
     Custom display settings for the Topic model in the Django admin interface.
     """
     list_display = ('custom_title', 'date_added', 'owner')
+    list_filter = ('owner', 'date_added')
 
     def custom_title(self, obj):
         """Returns  the 'text' field of the Topic model for display."""
@@ -25,6 +26,7 @@ class EntryAdmin(admin.ModelAdmin):
     Custom display settings for the Entry model in the Django admin interface.
     """
     list_display = ('custom_title', 'date_added', 'owner')
+    list_filter = ('owner', 'date_added')
 
     def custom_title(self, obj):
         """
