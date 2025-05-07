@@ -37,6 +37,7 @@ INSTALLED_APPS = [
 
     # Third Party Apps.
     'django_bootstrap5',
+    'grappelli',
 
     # Default django apps.
     'django.contrib.admin',
