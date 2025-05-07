@@ -6,17 +6,17 @@
       <h1 class="display-3 text-center pb-4 fw-bold">Knowledge Tracker</h1>
       
       <p class="lead">
-        Welcome to my web app! It was created to help me learn a web framework while also helping me and my friends track various
-        topics easier. You can enter a topic and then add entries to that pertain to that specific topic.
+        <strong>Welcome to my web app!</strong> I created it to help me learn a web framework while also making it easier for me and
+        my friends to track various topics. You can enter a topic and then add entries related to that specific topic.
       </p>
 
       {% if user.is_authenticated %}
         <div class="text-center pt-4">
           <p class="lead fs-6">
-            To get started, click <strong>"Topics"</strong> on the top left of the app to get started!
+            To get started, click <strong>'Topics'</strong> at the top left of the app.
           </p>
           <p class="lead fs-6">
-            You can also come back to this page anytime, just click <strong>"Knowledge Tracker"</strong> in the top left.
+            You can also return to this page anytime—just click <strong>'Knowledge Tracker'</strong> at the top left.
           </p>
         </div>
       {% endif %}
@@ -24,7 +24,7 @@
       {% if not user.is_authenticated %}
       <div class="text-center pt-4">
         <p class="lead fs-6">
-          To use this website, start by clicking the <strong>"Register"</strong> button below or on the <strong>top right</strong> of the app to register an account.<br>
+          To use this website, start by clicking the <strong>'Register'</strong> button below or at the top right of the app to create an account.
         </p>
       </div>
         <div class="text-center pt-3">
