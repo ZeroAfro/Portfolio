@@ -3,7 +3,7 @@
 {% block page_header %}
   <div class="p-3 mb-4 bg-light border rounded-3">
     <div class="container-fluid py-4">
-      <h1 class="display-3" style="text-align: center; font-weight: bold; padding-bottom: 25px;">Knowledge Tracker</h1>
+      <h1 class="display-3 text-center pb-4 fw-bold">Knowledge Tracker</h1>
       
       <p class="lead">
         Welcome to my web app! It was created to help me learn a web framework while also helping me and my friends track various
@@ -11,7 +11,7 @@
       </p>
 
       {% if user.is_authenticated %}
-        <div class="text-center pb-25">
+        <div class="text-center pt-4">
           <p class="lead fs-6">
             To get started, click <strong>"Topics"</strong> on the top left of the app to get started!
           </p>
@@ -22,12 +22,12 @@
       {% endif %}
 
       {% if not user.is_authenticated %}
-      <div class="text-center pt-25">
+      <div class="text-center pt-4">
         <p class="lead fs-6">
           To use this website, start by clicking the <strong>"Register"</strong> button below or on the <strong>top right</strong> of the app to register an account.<br>
         </p>
       </div>
-        <div class="text-center pt-15px;">
+        <div class="text-center pt-3">
           <a class="btn btn-primary btn-lg mt-1"
               href="{% url 'accounts:register' %}">Register &raquo;</a>
         </div>
