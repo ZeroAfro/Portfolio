@@ -11,27 +11,29 @@
       </p>
 
       {% if user.is_authenticated %}
-        <div style="text-align: center; padding-top: 25px;">
-          <p class="lead" style="font-size: 0.95em;">
+        <div class="text-center pb-25">
+          <p class="lead fs-6">
             To get started, click <strong>"Topics"</strong> on the top left of the app to get started!
           </p>
-          <p class="lead" style="font-size: 0.95em;">
+          <p class="lead fs-6">
             You can also come back to this page anytime, just click <strong>"Knowledge Tracker"</strong> in the top left.
           </p>
         </div>
       {% endif %}
+
       {% if not user.is_authenticated %}
-      <div style="text-align: center; padding-top: 25px;">
-        <p class="lead" style="font-size: 0.95em;">
+      <div class="text-center pt-25">
+        <p class="lead fs-6">
           To use this website, start by clicking the <strong>"Register"</strong> button below or on the <strong>top right</strong> of the app to register an account.<br>
         </p>
       </div>
-        <div style="text-align: center; padding-top: 15px;">
+        <div class="text-center pt-15px;">
           <a class="btn btn-primary btn-lg mt-1"
               href="{% url 'accounts:register' %}">Register &raquo;</a>
         </div>
 
       {% endif %}
+
     </div>
   </div>
 {% endblock page_header %}
