@@ -24,7 +24,7 @@ class EntryAdmin(admin.ModelAdmin):
     """
     Custom display settings for the Entry model in the Django admin interface.
     """
-    list_display = ('custom_title', 'date_added')
+    list_display = ('custom_title', 'date_added', 'owner')
 
     def custom_title(self, obj):
         """
