@@ -7,7 +7,8 @@
 {% block content %}
 
   <p>
-    <a href="{% url 'learning_logs:new_entry' topic.id %}">Add new entry</a>
+    <a class="btn btn-primary btn-sm mt-1"
+      href="{% url 'learning_logs:new_entry' topic.id %}">Add new entry</a>
   </p>
 
   {% for entry in entries %}
@@ -15,8 +16,9 @@
       <!-- Card header with timestamp and edit link -->
       <h4 class="card-header">
         {{ entry.date_added|date:'M d, Y H:i' }}
-        <small><a href="{% url 'learning_logs:edit_entry' entry.id %}">
-          edit entry</a></small>
+        <small><a class="btn btn-primary btn-sm mb-1"
+            href="{% url 'learning_logs:edit_entry' entry.id %}">
+            edit entry</a></small>
       </h4>
       <!-- Card body with entry text -->
       <div class="card-body">{{ entry.text|linebreaks }}</div>
