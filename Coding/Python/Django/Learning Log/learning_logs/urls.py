@@ -17,6 +17,6 @@ urlpatterns = [
     path('new_entry/<int:topic_id>/', views.new_entry, name='new_entry'),
     # Page for editing an entry.
     path('edit_entry/<int:entry_id>/', views.edit_entry, name='edit_entry'),
-    # Static About Me section
+    # About Me page
     path('about_me/', views.about_me, name="about_me"),
 ]
