@@ -16,8 +16,5 @@ learning_logs/static/learning_logs/images/*
 # Ignore batch script used only for local development
 server_start.bat
 
-# Ignore local exe used for server_start.bat
-nircmd.exe
-
 # Ignore To-Do list
 To-Do List.txt
