@@ -1,6 +1,11 @@
 from django.contrib import admin
+from django.contrib.auth.models import User
+from django.contrib.auth.admin import UserAdmin
 
 from .models import Topic, Entry
+
+# Unregister default User model
+admin.site.unregister(User)
 
 
 # Admin Models
@@ -40,6 +45,30 @@ class EntryAdmin(admin.ModelAdmin):
     custom_title.admin_order_field = 'text'
     # Changes the header text of the custom column to 'Entries'.
     custom_title.short_description = 'Entries'
+
+
+# Decorator to register custom UserAdmin
+@admin.register(User)
+class CustomUserAdmin(UserAdmin):
+    """
+    Custom displa settings for the Users admin panel
+    """
+    list_display = (
+        'username',
+        'is_superuser',
+        'is_staff',
+        'is_active',
+        'date_joined',
+        'last_login',
+        )
+    list_filter = (
+        'username',
+        'is_superuser',
+        'is_staff',
+        'is_active',
+        'date_joined',
+        'last_login',
+        )
 
 
 # Register your models here.
