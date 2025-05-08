@@ -1,6 +1,20 @@
-ll_env/
+# Ignore complied Python files
 __pycache__/
+
+#Ignores SQLite database files
 *.sqlite3
-To-Do List.txt
+
+# Ignores the virtual environment folder
+ll_env/
+
+# Ignores all files in the images folder, but keep the folder itself
 learning_logs/static/learning_logs/images/*
+
+# Dont ignore the .gitkeep file (to keep the empty folder in Git)
 !learning_logs/static/learning_logs/images/.gitkeep
+
+# Ignore batch script used only for local development
+server_start.bat
+
+# Ignore To-Do list
+To-Do List.txt
