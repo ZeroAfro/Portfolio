@@ -106,5 +106,5 @@ def edit_entry(request, entry_id):
 
 
 def about_me(request):
-    """About me page giving info on owner"""
+    """About me page"""
     return render(request, 'learning_logs/about_me.html')
