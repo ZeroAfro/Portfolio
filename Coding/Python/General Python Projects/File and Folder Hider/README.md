@@ -27,7 +27,7 @@ This Python script allows users to hide and un-hide specific files or folders by
 
 2. **Set your password:**
 
-   Replace the placeholder password in the `password` variable with your own password:
+   Type your password between the single quotes:
 
    ```python
    password: str = 'yourpassword'
