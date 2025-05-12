@@ -1,4 +1,8 @@
-"""Generates a numbered and formated empty list"""
+"""
+Generates a numbered and formated empty list based on user input.
+"""
+
+from sys import exit
 
 path = "numbered_list.txt"
 
@@ -8,19 +12,17 @@ print(
     "enter 'q' to quit.\n\n"
     )
 
-
 while True:
     list_length = input("List Length: ")
 
     if list_length.lower() == "q":
-        quit()
+        exit()
     else:
         try:
             list_length = int(list_length)
             break
         except ValueError:
             print("\nPlease enter either whole number or 'q'.\n")
-
 
 open(path, "w").close()
 
