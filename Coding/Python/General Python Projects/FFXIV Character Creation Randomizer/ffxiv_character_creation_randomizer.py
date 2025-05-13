@@ -116,7 +116,7 @@ class Character:
         """
 
         if self.race is None and self.clan is None:
-            self.race = random.choice(race_keys)
+            self.race = random.choice(list(races.keys()))
             self.clan = random.choice(races[self.race])
 
         elif self.race is None and self.clan:
@@ -179,7 +179,7 @@ class Character:
     def random_specialization(self):
         """Selects a random specialization"""
 
-        self.specialization = random.choice(specializations_key)
+        self.specialization = random.choice(list(specializations.keys()))
 
     def display_character(self):
         """Displays the character with the given settings"""
@@ -245,10 +245,6 @@ specializations = {
     "Healer": "Conjurer",
 }
 
-# Used 
-race_keys = list(races.keys())
-specializations_key = list(specializations.keys())
-clans = list(races.values())
 
 print(
     "Welcome to the FFXIV Character Creator Randomizer!\n\n"
@@ -300,7 +296,7 @@ while main:
                         race_clan_deactivation()
 
                     elif answer == "no":
-                        new_character.race = random.choice(race_keys)
+                        new_character.race = random.choice(list(races.keys()))
                         print(
                             f"\nYou got {new_character.race}!\n"
                             "\nYou can choose from the following clans: \n"
@@ -338,7 +334,7 @@ while main:
 
                         n = 1
 
-                        for race in race_keys:
+                        for race in list(races.keys()):
                             print(f"[{n}] {race}\n")
                             n += 1
 
@@ -385,7 +381,7 @@ while main:
 
                         n = 1
 
-                        for race in race_keys:
+                        for race in list(races.keys()):
                             print(f"[{n}] {race}\n")
                             n += 1
 
