@@ -1,8 +1,10 @@
 """
 FFXIV Character Creation Randomizer
 
-It takes the options from character creation
-and lets you randomize them in any combination you want
+This lets you randomize the creation of a character from the
+MMORPG 'FFXIV'.
+
+You can randomize the whole creation or just specific parts of the creation.
 """
 
 import random
@@ -17,15 +19,15 @@ character_description = False
 
 
 def error_prompt():
-    """Promps user to enter a valid option"""
+    """Promps the user to enter a valid option if a invalid is entered."""
 
     print("\nPlease enter a valid option.\n")
 
 
 def race_clan_deactivation():
     """
-    Deactivates the loop for race and
-    clan and activates gender selection loop
+    Deactivates the section for choosing race/clan
+    and activates the secion for selecting the gender.
     """
 
     global gender_selection
@@ -36,7 +38,10 @@ def race_clan_deactivation():
 
 
 def gender_selection_deactivation():
-    """Deactivates the loop for gender and activates class selection loop"""
+    """
+    Deactivates the section for choosing gender
+    and activates the secion for selecting the class.
+    """
 
     global class_specialization_selection
     global gender_selection
@@ -47,8 +52,9 @@ def gender_selection_deactivation():
 
 def class_specialization_deactivation():
     """
-    Deactivates the loop for class and specialization
-    and actives deity selection loop
+    Deactivates the section for choosing class/class
+    specialization and activates the secion for selecting
+    the deity.
     """
 
     global deity_selection
@@ -60,8 +66,8 @@ def class_specialization_deactivation():
 
 def deity_selection_deactivation():
     """
-    Deactivates the loop for deity selection
-    and activates the class description loop
+    Deactivates the section for choosing deity
+    and activates the secion that displays your character.
     """
 
     global character_description
@@ -72,7 +78,11 @@ def deity_selection_deactivation():
 
 
 class Character:
-    """Models a character made in FFXIV's character creator"""
+    """
+    Models a character from the MMORPG 'FFXIV'
+    with the various options you can choose during
+    character creation.
+    """
 
     def __init__(
         self,
@@ -91,7 +101,19 @@ class Character:
         self.specialization = specialization
 
     def random_race(self):
-        """Randomizes race and clan based on which attribute is present"""
+        """
+        Randomizes the characters race and/or clan based
+        on current attribute values.
+
+        - If both 'race' and 'clan are None:
+            Assigns a random race and a matching random clan.
+
+        - If 'race' is None but 'clan' is set:
+            Assigns the race that corresponds to the chosen clan.
+
+        - If 'clan' is None but 'race' is set:
+            Assigns a random clan from the chosen race.
+        """
 
         if self.race is None and self.clan is None:
             self.race = random.choice(race_keys)
@@ -113,7 +135,20 @@ class Character:
         self.gender = random.choice(genders)
 
     def random_starting_class(self):
-        """Selects a random starting class"""
+        """
+        Randomizes the character class and/or specialization
+        based on current attribute values.
+
+        - If 'starting_class' and 'specialization' are None:
+            Assigns a random class and then a random corresponding
+            specialization.
+
+        - If 'specialization' is None but 'starting_class' is set:
+            Assigns a random specialization that belongs to the set class.
+
+        - If 'starting_class' is None but 'specialization' is set:
+            Assigns a random class that belongs to the set specialization.
+        """
 
         if self.specialization is None and self.starting_class is None:
             self.starting_class = random.choice(starting_classes)
@@ -123,11 +158,11 @@ class Character:
                     self.specialization = specialization
 
         elif self.specialization is None and self.starting_class:
-            self.specialization = random.choice(specializations_key)
 
             for specialization, classes in specializations.items():
                 if self.starting_class in classes:
                     self.specialization = specialization
+                    print(self.specialization)
 
         elif self.starting_class is None and self.specialization:
             for _specialization, _classes in specializations.items():
@@ -210,6 +245,7 @@ specializations = {
     "Healer": "Conjurer",
 }
 
+# Used 
 race_keys = list(races.keys())
 specializations_key = list(specializations.keys())
 clans = list(races.values())
