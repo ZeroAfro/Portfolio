@@ -2,17 +2,17 @@ from random import choice
 
 
 class RandomWalk:
-    """Class to generate random walks"""
+    """Class to generate random 2D walks."""
 
-    def __init__(self, num_points=5000):
+    def __init__(self, num_points: int = 5000):
         """Initializes attributes of a walk"""
 
-        self.num_points = num_points
-        self.x_values = [0]
-        self.y_values = [0]
+        self.num_points: int = num_points
+        self.x_values: list[int] = [0]
+        self.y_values: list[int] = [0]
 
-    def get_step(self):
-        """Calculates step"""
+    def get_step(self) -> int:
+        """Calculates a single step in a random direction."""
 
         direction = choice([1, -1])
         distance = choice([0, 1, 2, 3, 4])
@@ -20,7 +20,7 @@ class RandomWalk:
 
         return step
 
-    def fill_walk(self):
+    def fill_walk(self) -> None:
         """Calculate all the points in the walk"""
 
         while len(self.x_values) < self.num_points:
