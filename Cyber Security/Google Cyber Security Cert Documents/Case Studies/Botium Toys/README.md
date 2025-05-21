@@ -26,4 +26,4 @@ This folder contains documentation from a simulated cybersecurity audit for the 
 
 ## 📌 Purpose
 
-This project showcases the ability to conduct a structured audit and translate findings into actionable security recommendations. It reflects core competencies expected of entry-level cybersecurity professionals in roles such as SOC analyst, GRC analyst, or audit support.
+This project showcases the ability to conduct a structured audit and translate findings into actionable security recommendations.
