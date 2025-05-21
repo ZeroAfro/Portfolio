@@ -1,29 +1,29 @@
 # 🧸 Botium Toys – Risk Assessment & Compliance Audit
 
-This folder contains documentation from a simulated cybersecurity audit conducted for the fictional company **Botium Toys**. The exercise involved identifying assets, assessing risk, evaluating security controls, and providing compliance recommendations based on industry best practices.
+This folder contains documentation from a simulated cybersecurity audit for the fictional company **Botium Toys**. The exercise involved identifying key assets, evaluating risks, reviewing security controls, and making recommendations to address compliance gaps.
 
 ---
 
 ## 📄 Files Included
 
 - **Scope, Goals, and Risk Assessment Report.pdf**  
-  A full audit report outlining the scope and goals of the engagement. Includes an asset inventory, risk assessment findings, and evaluation of the current security posture of Botium Toys.
+  A detailed report outlining the scope and objectives of the audit. Includes an inventory of current assets, a qualitative risk assessment, and an overview of Botium Toys' existing security posture.
 
 - **Controls and Compliance Checklist.pdf**  
-  A structured checklist used to evaluate Botium Toys’ security controls against compliance criteria. Items are marked as compliant or non-compliant, with recommendations provided for each area of concern.
+  A structured checklist used to assess whether required security controls were in place ("Yes" or "No"). At the end of the checklist, a full section provides tailored recommendations to address control deficiencies and improve compliance.
 
 ---
 
 ## 🧠 Skills Demonstrated
 
-- Risk assessment methodology
-- Control and compliance evaluation
-- Security documentation and reporting
-- Analytical thinking and technical writing
-- Familiarity with audit frameworks
+- Cybersecurity risk assessment
+- Asset identification and scoping
+- Control and compliance analysis
+- Technical writing and audit reporting
+- Providing actionable remediation guidance
 
 ---
 
 ## 📌 Purpose
 
-This project demonstrates the ability to conduct a risk-based security audit and communicate findings in a structured, professional format—key skills for cybersecurity analysts and auditors.
+This project showcases the ability to conduct a structured audit and translate findings into actionable security recommendations. It reflects core competencies expected of entry-level cybersecurity professionals in roles such as SOC analyst, GRC analyst, or audit support.
