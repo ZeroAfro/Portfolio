@@ -83,6 +83,7 @@ def main() -> None:
         logging.debug("--- Start of main while loop ---")
         input("\nPress 'ENTER' to generate teams...\n")
 
+        logging.debug("Called 'team_randomizer()'")
         team_1, team_2 = team_randomizer()
 
         # Ensure newly generated teams are different from the previous teams
@@ -100,6 +101,7 @@ def main() -> None:
                 # Keep regenerating teams until both teams differ from
                 # the previous round
                 logging.debug("'team_randomizer()' called.")
+                logging.debug("Called 'team_randomizer()'")
                 team_1, team_2 = team_randomizer()
                 logging.debug(
                     f"Trying new teams: Team 1 - {sorted(team_1)}, "
