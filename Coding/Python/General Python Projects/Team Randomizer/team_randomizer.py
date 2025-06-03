@@ -58,7 +58,7 @@ def team_randomizer() -> tuple[list[str], list[str]]:
     return team_1, team_2
 
 
-def main():
+def main() -> None:
     """
     Continuously generates random teams, ensuring that no
     team is repeated consecutively.
