@@ -1,10 +1,15 @@
 """
-Generates random teams while making sure that
-no team gets pulled twice in a row.
+Generates random teams of two players each from a fixed list,
+ensuring that no team is repeated twice in a row.
+
+Intended for use in quick team randomization scenarios,
+with console input to generate new teams interactively.
 """
 
 import random
 import logging
+
+FRIENDS: list[str] = ["friend1", "friend2", "friend3", "friend4"]
 
 logging.basicConfig(
     level=logging.DEBUG,
@@ -17,7 +22,7 @@ logging.basicConfig(
 logging.disable()
 
 
-def team_randomizer() -> tuple[str, str]:
+def team_randomizer() -> tuple[list[str], list[str]]:
     """
     Randomly generates two teams of two players each from a predefined list.
 
@@ -32,8 +37,10 @@ def team_randomizer() -> tuple[str, str]:
 
     logging.debug("--- Start of 'team_randomizer()' function ---")
 
-    friends: list[str] = ["friend1", "friend2", "friend3", "friend4"]
+    # List of players to choose from
+    friends = FRIENDS.copy()
 
+    # Select four unique players by choosing and removing one at a time
     person_1 = random.choice(friends)
     friends.remove(person_1)
     person_2 = random.choice(friends)
@@ -66,15 +73,19 @@ def main():
 
     logging.debug("--- Start of 'main()' function ---")
 
-    # Stores previously selected teams; each team is a list of player names.
-    previous_teams: list[list[str]] = []
+    # Keep track of teams generated in the previous round
+    # as sets for easy comparison
+    previous_teams: list[set[str]] = []
 
+    # Run indefinitely until the user manually stops,
+    # generating new teams on ENTER
     while True:
         logging.debug("--- Start of main while loop ---")
         input("\nPress 'ENTER' to generate teams...\n")
 
         team_1, team_2 = team_randomizer()
 
+        # Ensure newly generated teams are different from the previous teams
         if set(team_1) in previous_teams or set(team_2) in previous_teams:
             logging.debug("Start of 'IF' statement.")
             logging.debug(
@@ -86,22 +97,28 @@ def main():
             while (
                 set(team_1) in previous_teams or set(team_2) in previous_teams
             ):
+                # Keep regenerating teams until both teams differ from
+                # the previous round
                 logging.debug("'team_randomizer()' called.")
                 team_1, team_2 = team_randomizer()
                 logging.debug(
                     f"Trying new teams: Team 1 - {sorted(team_1)}, "
                     f"Team 2 - {sorted(team_2)}"
                 )
+
+            # Use sets to ignore order when comparing teams
             previous_teams = [set(team_1), set(team_2)]
             logging.debug("End of 'IF' statement.")
 
         else:
             logging.debug("Start of 'ELSE' statement.")
+
+            # Use sets to ignore order when comparing teams
             previous_teams = [set(team_1), set(team_2)]
             logging.debug("End of 'ELSE' statement.")
 
-        print(f"Team 1: {" and ".join(sorted(team_1))}")
-        print(f"Team 2: {" and ".join(sorted(team_2))}")
+        print(f"Team 1: {' and '.join(sorted(team_1))}")
+        print(f"Team 2: {' and '.join(sorted(team_2))}")
 
         logging.info(
             f"Teams generated: Team 1 - {sorted(team_1)}, "
