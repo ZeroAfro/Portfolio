@@ -32,7 +32,7 @@ def team_randomizer() -> tuple[str, str]:
 
     logging.debug("--- Start of 'team_randomizer()' function ---")
 
-    friends: list[str] = ["Toxic", "Ryan", "Josh", "Wolf"]
+    friends: list[str] = ["friend1", "friend2", "friend3", "friend4"]
 
     person_1 = random.choice(friends)
     friends.remove(person_1)
