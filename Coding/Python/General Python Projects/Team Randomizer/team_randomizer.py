@@ -100,7 +100,6 @@ def main() -> None:
             ):
                 # Keep regenerating teams until both teams differ from
                 # the previous round
-                logging.debug("'team_randomizer()' called.")
                 logging.debug("Called 'team_randomizer()'")
                 team_1, team_2 = team_randomizer()
                 logging.debug(
