@@ -46,7 +46,7 @@ def main():
     losses: int = 0
     ties: int = 0
 
-    logging.debug("Start of program.\n")
+    logging.debug("--- Start of 'main()' function ---")
 
     print("ROCK, PAPER, SCISSORS")
 
@@ -121,7 +121,7 @@ def main():
             print("You lose!\n")
             losses += 1
 
-        logging.debug("End of program.\n")
+        logging.debug("--- End of 'main()' function ---")
 
 
 if __name__ == "__main__":
