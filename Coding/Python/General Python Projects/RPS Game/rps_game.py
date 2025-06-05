@@ -22,7 +22,7 @@ logging.basicConfig(
 # logging.disable()
 
 
-def main():
+def main() -> None:
     """
     Play a command-line Rock, Paper, Scissors game against the computer.
 
@@ -57,7 +57,7 @@ def main():
         # Get the player's move.
         while True:
             print("Enter your move: (r)ock (p)aper (s)cissors or (q)uit")
-            player_move: str = input(">").lower()
+            player_move = input(">").lower()
             logging.info(f"Payer Move: {player_move}")
 
             # Handle quitting the game.
