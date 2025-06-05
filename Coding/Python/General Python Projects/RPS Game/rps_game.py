@@ -19,7 +19,7 @@ logging.basicConfig(
 
 # Logging is configured for debugging. To enable debug output,
 # comment out the `logging.disable()` line below.
-# logging.disable()
+logging.disable()
 
 
 def main() -> None:
@@ -52,26 +52,25 @@ def main() -> None:
 
     while True:
         # Display current game statistics.
-        print("%s Wins, %s Losses, %s Ties\n" % (wins, losses, ties))
+        print(f"{wins} Wins, {losses} Losses, {ties} Ties\n")
 
         # Get the player's move.
         while True:
             print("Enter your move: (r)ock (p)aper (s)cissors or (q)uit")
             player_move = input(">").lower()
-            logging.info(f"Payer Move: {player_move}")
 
             # Handle quitting the game.
             if player_move == "q":
-                logging.debug("Option 'q' chosen to quit the program.")
                 sys.exit()
 
             # Proceed only if the input is valid.
             elif player_move in ["r", "p", "s"]:
+                logging.info("Payer Move: %s", player_move)
                 break
 
             # Prompt again if input is invalid.
             else:
-                logging.warning(f"User entered invalid input: {player_move}")
+                logging.warning("User entered invalid input: %s", player_move)
                 print(
                     "\nPlease enter a valid option of: (r) (p) (s) or (q)...\n"
                 )
@@ -86,7 +85,7 @@ def main() -> None:
 
         # Randomly select the comptuter's move.
         move_number = random.randint(1, 3)
-        logging.info(f"Move Number: {move_number}")
+        logging.info("Move Number: %s", move_number)
 
         # Determine the outcome of the round.
         if move_number == 1:

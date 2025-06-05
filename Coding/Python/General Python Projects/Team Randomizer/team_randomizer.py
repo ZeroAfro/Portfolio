@@ -90,9 +90,10 @@ def main() -> None:
         if set(team_1) in previous_teams or set(team_2) in previous_teams:
             logging.debug("Start of 'IF' statement.")
             logging.debug(
-                f"Duplicate team detected. "
-                f"Previous teams: Team 1 - {sorted(previous_teams[0])}, "
-                f"Team 2 - {sorted(previous_teams[1])}"
+                "Duplicate team detected. Previous teams: "
+                "Team 1 - %s, Team 2 - %s",
+                sorted(previous_teams[0]),
+                sorted(previous_teams[1]),
             )
 
             while (
@@ -103,8 +104,9 @@ def main() -> None:
                 logging.debug("Called 'team_randomizer()'")
                 team_1, team_2 = team_randomizer()
                 logging.debug(
-                    f"Trying new teams: Team 1 - {sorted(team_1)}, "
-                    f"Team 2 - {sorted(team_2)}"
+                    "Trying new teams: Team 1 - %s, Team 2 - %s",
+                    sorted(team_1),
+                    sorted(team_2),
                 )
 
             # Use sets to ignore order when comparing teams
@@ -122,8 +124,9 @@ def main() -> None:
         print(f"Team 2: {' and '.join(sorted(team_2))}")
 
         logging.info(
-            f"Teams generated: Team 1 - {sorted(team_1)}, "
-            f"Team 2 - {sorted(team_2)}"
+            "Teams generated: Team 1 - %s, Team 2 - %s",
+            sorted(team_1),
+            sorted(team_2),
         )
 
         logging.debug("--- End of main while loop ---")

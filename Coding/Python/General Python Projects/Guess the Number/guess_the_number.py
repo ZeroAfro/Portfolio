@@ -39,7 +39,7 @@ def main() -> None:
 
     # Generate the secret number between 1 and 20
     secret_number: int = random.randint(1, 20)
-    logging.info(f"The secret number generated: {secret_number}")
+    logging.info("The secret number generated: %s", secret_number)
 
     print("I'm thinking of a number between 1 and 20...")
     print("You have four chances to guess it!\n")
@@ -53,23 +53,23 @@ def main() -> None:
                 print("Take a guess:")
                 user_input = input(">")
                 guess = int(user_input)
-                logging.info(f"User Input: {guess}")
 
             except ValueError:
-                logging.warning(f"User entered invalid input: {user_input}")
+                logging.warning("User entered invalid input: %s", user_input)
                 print("\nPlease enter a valid number...\n")
                 continue
 
             if guess < 1 or guess > 20:
                 logging.warning(
-                    f"User entered a value that is not 1-20: Value: {guess}"
+                    "User entered a value that is not 1-20: %s", guess
                 )
                 print("\nYour guess must be between 1 and 20.\n")
             else:
                 break
 
+        logging.info("User Input: %s", guess)
         guesses.append(guess)
-        logging.info(f"Guess {guess} added to list.")
+        logging.info("Guess %s added to list.", guess)
 
         if guess < secret_number:
             print("\nYour guess is too low.\n")
@@ -84,7 +84,7 @@ def main() -> None:
             f"\nYou guessed it! You got it in {str(len(guesses))} guesses!\n"
         )
         logging.info(
-            f"User guessed the secret number in {str(len(guesses))} guesses."
+            "User guessed the secret number in %s guesses.", len(guesses)
         )
     else:
         print(f"Sorry you didn't win! The correct number was: {secret_number}")
