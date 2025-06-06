@@ -165,7 +165,7 @@ def main() -> None:
     weekly_average = weekly_sum // len(weekly_tdees)
     logging.info("%s / %s = %s", weekly_sum, len(weekly_tdees), weekly_average)
     # Calculates caloric deficit by taking the average and subtracting either
-    # 500 for one pounds or 1000 for two pounds.
+    # 500 for one pound or 1000 for two pounds.
     # TODO: Prevent negative caloric deficit values
     caloric_deficit = weekly_average - target_deficit
     logging.info("%s - %s = %s", weekly_average, pounds_lost, caloric_deficit)
