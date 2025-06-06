@@ -20,7 +20,7 @@ logging.basicConfig(
 
 # Logging is configured for debugging. To enable debug output,
 # comment out the `logging.disable()` line below.
-# logging.disable()
+logging.disable()
 
 
 def main() -> None:
