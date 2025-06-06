@@ -34,3 +34,8 @@ This script offers a simple interactive game that runs in a loop until you decid
 - **Python 3.10+**
 - **Built-in Modules:** `random`, `sys`, `logging`
 
+---
+
+## Notes
+
+- Debug logging can be enabled or disabled by commenting/uncommenting the `logging.disable()` line in the script.  
