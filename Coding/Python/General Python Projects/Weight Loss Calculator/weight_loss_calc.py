@@ -1,8 +1,11 @@
 """
-Collects weekly TDEE inputs from the user, validates them, and calculates
-an average daily caloric intake needed to lose 2 pounds per week.
+Weight loss calculator.
 
-Logs key steps and warns on invalid input. Outputs the final caloric
+Collects weekly Total Daily Energy Expenditure (TDEE) inputs from the user,
+validates them, and calculates the average daily caloric intake required
+to lose either 1 or 2 pounds per week.
+
+Logs key events and warns on invalid input. Outputs the final caloric
 recommendation.
 """
 
@@ -17,19 +20,27 @@ logging.basicConfig(
 
 # Logging is configured for debugging. To enable debug output,
 # comment out the `logging.disable()` line below.
-logging.disable()
+# logging.disable()
 
 
 def main() -> None:
     """
-    Prompt for weekly TDEE values, validate input, and compute average TDEE.
+    Main program function to run the weight loss calculator.
 
-    Calculate daily calories to lose 2 pounds/week by subtracting 1000
-    from the average. User can quit anytime with 'q'.
+    Prompts the user to:
+    - Specify the number of weeks to calculate (minimum two weeks).
+    - Choose a weight loss goal of 1 or 2 pounds per week.
+    - Enter weekly TDEE values.
 
-    Logs key steps and prints the final recommendation.
+    Validates all inputs and logs relevant information and warnings.
 
-    Note: Negative caloric intake values are not handled.
+    Calculates the average TDEE and subtracts the appropriate daily caloric
+    deficit (500 calories for 1 pound/week, 1000 for 2 pounds/week) to
+    determine the recommended daily caloric intake.
+
+    Prints the final caloric recommendation.
+
+    The user can quit the program anytime by entering 'q'.
     """
 
     weekly_tdees: list[int] = []
@@ -39,6 +50,7 @@ def main() -> None:
     print("Welcome to the weight loss calculator...")
     print("You can enter 'q' to quit at any time\n")
 
+    # Prompt user to enter how many weeks they wish to calculate.
     while True:
         print("How many weeks do you want to calculate?")
         user_weeks = input(">").strip()
@@ -62,8 +74,40 @@ def main() -> None:
 
         break
 
+    # Prompt user to enter rather they want to lose one or two pounds a week.
+    while True:
+        print("Would you like to lose [1] or [2] pounds a week?")
+        user_pounds = input(">").strip()
+        if user_pounds.lower() == "q":
+            sys.exit()
+        try:
+            pounds_lost = int(user_pounds)
+        except ValueError:
+            logging.warning(
+                "User entered a non-integer value for pounds: %s", user_pounds
+            )
+            print("Please enter a valid number of either '1' or '2'...\n")
+            continue
+
+        if pounds_lost not in (1, 2):
+            logging.warning(
+                "User entered %s; must be either be " "'1' or '2'", pounds_lost
+            )
+            print("Must enter either '1' or '2' pounds...\n")
+            continue
+
+        # Set daily caloric deficit based on pounds lost per week goal.
+        target_deficit = 500 if pounds_lost == 1 else 1000
+        logging.info(
+            "User selected to lose %s pounds per week. Target daily deficit "
+            "set to %s calories",
+            pounds_lost,
+            target_deficit,
+        )
+        break
+
     # Prompt user to enter TDEE values for each week.
-    for _weeks in range(0, total_weeks):
+    for _ in range(0, total_weeks):
         while True:
             print("Please enter your TDEE value:")
             user_input = input(">").strip()
@@ -71,22 +115,17 @@ def main() -> None:
                 sys.exit()
             try:
                 tdee_value = int(user_input)
-                if tdee_value <= 0:
-                    if tdee_value == 0:
-                        logging.warning(
-                            "User entered zero as the integer value."
-                        )
-                        print("Your TDEE cannot be zero.\n")
-                        continue
-                    else:
-                        logging.warning(
-                            "User entered a negative integer value."
-                        )
-                        print(
-                            "You entered a negative number, your TDEE "
-                            "cannot be negative.\n"
-                        )
-                        continue
+                if tdee_value == 0:
+                    logging.warning("User entered zero as the integer value.")
+                    print("Your TDEE cannot be zero.\n")
+                    continue
+                elif tdee_value < 0:
+                    logging.warning("User entered a negative integer value.")
+                    print(
+                        "You entered a negative number, your TDEE "
+                        "cannot be negative.\n"
+                    )
+                    continue
             except ValueError:
                 logging.warning(
                     "User entered a non-integer value for TDEE: %s", user_input
@@ -104,17 +143,19 @@ def main() -> None:
     # Calculates the average TDEE from the list of weekly values.
     weekly_average = weekly_sum // len(weekly_tdees)
     logging.info("%s / %s = %s", weekly_sum, len(weekly_tdees), weekly_average)
-    # Calculates caloric deficit by taking the average and subtracting 1000.
+    # Calculates caloric deficit by taking the average and subtracting either
+    # 500 for one pounds or 1000 for two pounds.
     # TODO: Prevent negative caloric deficit values
-    caloric_deficit = weekly_average - 1000
-    logging.info("%s - 1000 = %s", weekly_average, caloric_deficit)
+    caloric_deficit = weekly_average - target_deficit
+    logging.info("%s - %s = %s", weekly_average, pounds_lost, caloric_deficit)
 
     print(
         "To lose two pounds a week you need to "
-        f"eat {caloric_deficit} calories a day."
+        f"eat {caloric_deficit} calories a day.\n"
     )
-
     logging.debug("--- End of 'main()' ---")
+    input("Press 'ENTER' to exit...")
+    sys.exit()
 
 
 if __name__ == "__main__":
