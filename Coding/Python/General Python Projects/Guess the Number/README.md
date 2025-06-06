@@ -33,3 +33,9 @@ This script was designed as a fun, interactive way to practice control flow and 
 
 - **Python 3.10+**
 - **Built-in Modules:** `random`, `logging`
+
+---
+
+## Notes
+
+- Debug logging can be enabled or disabled by commenting/uncommenting the `logging.disable()` line in the script.  
