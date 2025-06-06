@@ -23,3 +23,9 @@ This script was created to help four friends randomly split into two teams of tw
 
 - **Python 3.10+**
 - **Built-in Modules:** `random`, `logging`
+
+---
+
+## Notes
+
+- Debug logging can be enabled or disabled by commenting/uncommenting the `logging.disable()` line in the script.  
