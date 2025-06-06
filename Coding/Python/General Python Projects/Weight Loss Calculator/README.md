@@ -14,7 +14,7 @@ This script prompts users to:
 
 Based on the average TDEE and chosen goal, the program calculates and displays the recommended daily calorie intake to meet the weight loss target. It also supports quitting anytime by typing `q`.
 
-The program features robust input validation, debug logging, and clear messaging to guide users.
+The program includes input validation, debug logging, and messaging around safe calorie thresholds (e.g., below 1200 calories/day).
 
 ---
 
@@ -22,8 +22,9 @@ The program features robust input validation, debug logging, and clear messaging
 
 - 📅 Input multiple weeks of TDEE data (minimum 2 weeks)  
 - 🎯 Choose a weight loss goal: 1 or 2 pounds per week  
-- ✅ Validates all inputs (no zero, negative, or non-integer values allowed)  
+- ✅ Validates inputs (no zero, negative, or non-integer values allowed)  
 - 🧮 Calculates average TDEE and subtracts 500 or 1000 calories depending on goal  
+- ⚠️ Warns user if the calculated calorie intake drops below 1200/day  
 - 🔄 Type `q` at any prompt to quit the program immediately  
 - 🧪 Debug logging included for tracing program flow and troubleshooting  
 
@@ -38,7 +39,7 @@ The program features robust input validation, debug logging, and clear messaging
 5. Receive your recommended daily calorie intake to meet your weight loss goal.  
 6. Press ENTER to exit after viewing the result.  
 
-At any point, type `q` and press ENTER to quit.
+💡 You can type `q` at any point to quit.
 
 ---
 
@@ -54,3 +55,5 @@ At any point, type `q` and press ENTER to quit.
 - The program currently subtracts a fixed daily deficit (500 or 1000 calories) based on the weight loss goal.  
 - Input validation ensures realistic and meaningful data entries.  
 - Debug logging can be enabled or disabled by commenting/uncommenting the `logging.disable()` line in the script.  
+
+
