@@ -20,7 +20,7 @@ logging.basicConfig(
 
 # Logging is configured for debugging. To enable debug output,
 # comment out the `logging.disable()` line below.
-logging.disable()
+# logging.disable()
 
 
 def main() -> None:
@@ -47,8 +47,25 @@ def main() -> None:
 
     logging.debug("--- Start of 'main()' ---")
 
-    print("Welcome to the weight loss calculator...")
-    print("You can enter 'q' to quit at any time\n")
+    print(
+        """
+        Welcome to the weight loss calculator.
+
+        Please note that this is not meant to replace
+        medical advice. This is simply a tool to help to
+        find a general estimation of your caloric deficit.
+
+        Before starting any diet you should always check
+        with a doctor or other professional.
+
+        I made this in order to help me keep track of my
+        goals during my weightloss journey.
+
+        Always check any info given with a professional.
+
+        You can exit anytime by entering 'q'...\n
+        """
+    )
 
     # Prompt user to enter how many weeks they wish to calculate.
     while True:
@@ -56,6 +73,7 @@ def main() -> None:
         user_weeks = input(">").strip()
         if user_weeks.lower() == "q":
             sys.exit()
+
         try:
             total_weeks = int(user_weeks)
         except ValueError:
@@ -64,6 +82,7 @@ def main() -> None:
             )
             print("Please enter a valid number...\n")
             continue
+
         if total_weeks <= 1:
             logging.warning(
                 "User entered %s weeks; must enter at least two weeks.",
@@ -76,10 +95,11 @@ def main() -> None:
 
     # Prompt user to enter rather they want to lose one or two pounds a week.
     while True:
-        print("Would you like to lose [1] or [2] pounds a week?")
+        print("How many pounds per week would you like to lose? Enter 1 or 2.")
         user_pounds = input(">").strip()
         if user_pounds.lower() == "q":
             sys.exit()
+
         try:
             pounds_lost = int(user_pounds)
         except ValueError:
@@ -113,6 +133,7 @@ def main() -> None:
             user_input = input(">").strip()
             if user_input.lower() == "q":
                 sys.exit()
+
             try:
                 tdee_value = int(user_input)
                 if tdee_value == 0:
@@ -122,8 +143,8 @@ def main() -> None:
                 elif tdee_value < 0:
                     logging.warning("User entered a negative integer value.")
                     print(
-                        "You entered a negative number, your TDEE "
-                        "cannot be negative.\n"
+                        "You entered a negative number, your TDEE cannot "
+                        "be negative.\n"
                     )
                     continue
             except ValueError:
@@ -133,7 +154,7 @@ def main() -> None:
                 print("Please enter a valid number...\n")
                 continue
 
-            # Adds each TDEE as a list value to 'weekly_tdees'.
+            # Append valid TDEE to the list.
             weekly_tdees.append(tdee_value)
             break
 
@@ -149,8 +170,19 @@ def main() -> None:
     caloric_deficit = weekly_average - target_deficit
     logging.info("%s - %s = %s", weekly_average, pounds_lost, caloric_deficit)
 
+    if caloric_deficit < 1200:
+        logging.info(
+            "User's calculated caloric deficit is %s a day; this is under "
+            "the medically safe minimum of 1200 calories a day",
+            caloric_deficit,
+        )
+        print(
+            "\n---Anything less than 1,200 calories a day isn't recommended "
+            "without doctor supervision.---\n"
+        )
+
     print(
-        "To lose two pounds a week you need to "
+        f"\tTo lose {user_pounds} pound(s) a week you'll need to "
         f"eat {caloric_deficit} calories a day.\n"
     )
     logging.debug("--- End of 'main()' ---")
