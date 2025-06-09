@@ -168,7 +168,9 @@ def main() -> None:
     # 500 for one pound or 1000 for two pounds.
     # TODO: Prevent negative caloric deficit values
     caloric_deficit = weekly_average - target_deficit
-    logging.info("%s - %s = %s", weekly_average, pounds_lost, caloric_deficit)
+    logging.info(
+        "%s - %s = %s", weekly_average, target_deficit, caloric_deficit
+    )
 
     if caloric_deficit < 1200:
         logging.info(
